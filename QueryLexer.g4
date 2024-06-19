@@ -4,8 +4,7 @@
 
 lexer grammar QueryLexer;
 
-SPACE   : [ \t]+  -> channel(HIDDEN);
-NEWLINE : [\r\n]+ -> skip;
+WHITESPACE: [ \t\r\n]+ -> skip;
 
 INTEGER: [0-9]+;
 
