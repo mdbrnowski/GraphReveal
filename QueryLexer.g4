@@ -8,16 +8,17 @@ WHITESPACE: [ \t\r\n]+ -> skip;
 
 INTEGER: [0-9]+;
 
-SCOLON: ';';
+SEPERATOR: ',' | ';';
 
 NOT: 'not' | '!';
 
 VERTEX : 'vertex' | 'vertices' | 'vertexes' | 'verts' | 'V';
 EDGE   : 'edge' | 'edges' | 'E';
 
-ACYCLIC   : 'acyclic';
-BIPARTITE : 'bipartite';
-COMPLETE  : 'complete';
-CONNECTED : 'connected';
-EULERIAN  : 'eulerian' | 'euler';
-PLANAR    : 'planar';
+ACYCLIC     : 'acyclic';
+BIPARTITE   : 'bipartite';
+COMPLETE    : 'complete';
+CONNECTED   : 'connected';
+EULERIAN    : 'eulerian' | 'euler';
+HAMILTONIAN : 'hamiltonian' | 'hamilton';
+PLANAR      : 'planar';

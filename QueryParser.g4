@@ -7,7 +7,7 @@ grammar QueryParser;
 import QueryLexer;
 
 query
-    : expr (SCOLON expr)* EOF
+    : expr (SEPERATOR expr)* EOF
     ;
 
 expr
@@ -26,5 +26,6 @@ boolProperty
     | COMPLETE
     | CONNECTED
     | EULERIAN
+    | HAMILTONIAN
     | PLANAR
     ;
