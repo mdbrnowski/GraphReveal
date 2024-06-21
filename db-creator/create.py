@@ -13,8 +13,11 @@ cur.execute(
             id VARCHAR(20) PRIMARY KEY,
             vertices INT NOT NULL,
             edges INT NOT NULL,
+            acyclic BOOLEAN NOT NULL,
+            bipartite BOOLEAN NOT NULL,
             connected BOOLEAN NOT NULL,
-            acyclic BOOLEAN NOT NULL
+            eulerian BOOLEAN NOT NULL,
+            planar BOOLEAN NOT NULL
         )"""
 )
 
@@ -24,13 +27,16 @@ for n in range(2, 8):
     for graph_g6 in graphs_g6:
         graph = nx.from_graph6_bytes(str.encode(graph_g6))
         cur.execute(
-            "INSERT INTO graphs VALUES (?, ?, ?, ?, ?)",
+            "INSERT INTO graphs VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
             [
                 graph_g6,
                 graph.number_of_nodes(),
                 graph.number_of_edges(),
-                nx.is_connected(graph),
                 nx.is_forest(graph),
+                nx.is_bipartite(graph),
+                nx.is_connected(graph),
+                nx.is_eulerian(graph),
+                nx.is_planar(graph),
             ],
         )
 
