@@ -2,9 +2,11 @@
 // $antlr-format reflowComments false, useTab false, allowShortRulesOnASingleLine false
 // $antlr-format allowShortBlocksOnASingleLine true, alignSemicolons hanging, alignColons hanging
 
-grammar QueryParser;
+parser grammar QueryParser;
 
-import QueryLexer;
+options {
+    tokenVocab = QueryLexer;
+}
 
 query
     : expr (SEPERATOR expr)* EOF
