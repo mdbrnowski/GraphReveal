@@ -1,3 +1,3 @@
-parser/QueryLexer.py linguist-vendored
-parser/QueryParser.py linguist-vendored
-parser/QueryParserListener.py linguist-vendored
+parser/generated/QueryLexer.py linguist-vendored
+parser/generated/QueryParser.py linguist-vendored
+parser/generated/QueryParserListener.py linguist-vendored

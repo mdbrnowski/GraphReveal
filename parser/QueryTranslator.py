@@ -1,6 +1,6 @@
 from antlr4.tree.Tree import ParseTree, TerminalNodeImpl, ErrorNodeImpl, TerminalNode, INVALID_INTERVAL
-from QueryParser import QueryParser
-from QueryParserListener import QueryParserListener
+from generated.QueryParser import QueryParser
+from generated.QueryParserListener import QueryParserListener
 
 
 class QueryTranslator(QueryParserListener):
