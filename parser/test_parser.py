@@ -8,8 +8,9 @@ from QueryParser import QueryParser
 @pytest.mark.parametrize("valid_query", [
     "6 vertices",
     "18 edges",
-    "1 vertex; 1 edge",
-    "2 V, 0 E",
+    "2 components",
+    "1 vertex; 1 edge; 1 component",
+    "2 V, 0 E, 1 C",
     "not acyclic, ! bipartite, connected, eulerian",
     "5 V; !planar",
 ])
@@ -25,6 +26,7 @@ def test_valid_query(valid_query):
     "wrong",
     "vertices",
     "edges",
+    "component",
     "1 bipartite",
 ])
 def test_invalid_query(invalid_query):

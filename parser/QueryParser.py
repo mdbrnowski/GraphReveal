@@ -10,9 +10,9 @@ else:
 
 def serializedATN():
     return [
-        4,1,13,31,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,1,0,1,0,1,0,5,0,12,8,0,
+        4,1,14,31,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,1,0,1,0,1,0,5,0,12,8,0,
         10,0,12,0,15,9,0,1,0,1,0,1,1,1,1,1,1,3,1,22,8,1,1,1,3,1,25,8,1,1,
-        2,1,2,1,3,1,3,1,3,0,0,4,0,2,4,6,0,2,1,0,5,6,1,0,7,13,29,0,8,1,0,
+        2,1,2,1,3,1,3,1,3,0,0,4,0,2,4,6,0,2,1,0,5,7,1,0,8,14,29,0,8,1,0,
         0,0,2,24,1,0,0,0,4,26,1,0,0,0,6,28,1,0,0,0,8,13,3,2,1,0,9,10,5,3,
         0,0,10,12,3,2,1,0,11,9,1,0,0,0,12,15,1,0,0,0,13,11,1,0,0,0,13,14,
         1,0,0,0,14,16,1,0,0,0,15,13,1,0,0,0,16,17,5,0,0,1,17,1,1,0,0,0,18,
@@ -33,13 +33,14 @@ class QueryParser ( Parser ):
     sharedContextCache = PredictionContextCache()
 
     literalNames = [ "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
-                     "<INVALID>", "<INVALID>", "<INVALID>", "'acyclic'", 
-                     "'bipartite'", "'complete'", "'connected'", "<INVALID>", 
-                     "<INVALID>", "'planar'" ]
+                     "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
+                     "'acyclic'", "'bipartite'", "'complete'", "'connected'", 
+                     "<INVALID>", "<INVALID>", "'planar'" ]
 
     symbolicNames = [ "<INVALID>", "WHITESPACE", "INTEGER", "SEPERATOR", 
-                      "NOT", "VERTEX", "EDGE", "ACYCLIC", "BIPARTITE", "COMPLETE", 
-                      "CONNECTED", "EULERIAN", "HAMILTONIAN", "PLANAR" ]
+                      "NOT", "VERTEX", "EDGE", "COMPONENT", "ACYCLIC", "BIPARTITE", 
+                      "COMPLETE", "CONNECTED", "EULERIAN", "HAMILTONIAN", 
+                      "PLANAR" ]
 
     RULE_query = 0
     RULE_expr = 1
@@ -55,13 +56,14 @@ class QueryParser ( Parser ):
     NOT=4
     VERTEX=5
     EDGE=6
-    ACYCLIC=7
-    BIPARTITE=8
-    COMPLETE=9
-    CONNECTED=10
-    EULERIAN=11
-    HAMILTONIAN=12
-    PLANAR=13
+    COMPONENT=7
+    ACYCLIC=8
+    BIPARTITE=9
+    COMPLETE=10
+    CONNECTED=11
+    EULERIAN=12
+    HAMILTONIAN=13
+    PLANAR=14
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
@@ -192,7 +194,7 @@ class QueryParser ( Parser ):
                 self.state = 19
                 self.fundamental()
                 pass
-            elif token in [4, 7, 8, 9, 10, 11, 12, 13]:
+            elif token in [4, 8, 9, 10, 11, 12, 13, 14]:
                 self.enterOuterAlt(localctx, 2)
                 self.state = 21
                 self._errHandler.sync(self)
@@ -230,6 +232,9 @@ class QueryParser ( Parser ):
         def EDGE(self):
             return self.getToken(QueryParser.EDGE, 0)
 
+        def COMPONENT(self):
+            return self.getToken(QueryParser.COMPONENT, 0)
+
         def getRuleIndex(self):
             return QueryParser.RULE_fundamental
 
@@ -253,7 +258,7 @@ class QueryParser ( Parser ):
             self.enterOuterAlt(localctx, 1)
             self.state = 26
             _la = self._input.LA(1)
-            if not(_la==5 or _la==6):
+            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 224) != 0)):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)
@@ -318,7 +323,7 @@ class QueryParser ( Parser ):
             self.enterOuterAlt(localctx, 1)
             self.state = 28
             _la = self._input.LA(1)
-            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 16256) != 0)):
+            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 32512) != 0)):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)

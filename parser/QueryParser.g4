@@ -20,14 +20,15 @@ expr
 fundamental
     : VERTEX
     | EDGE
+    | COMPONENT
     ;
 
 boolProperty
     : ACYCLIC
     | BIPARTITE
-    | COMPLETE
+    | COMPLETE // todo: not yet implemented
     | CONNECTED
     | EULERIAN
-    | HAMILTONIAN
+    | HAMILTONIAN // todo: not yet implemented
     | PLANAR
     ;

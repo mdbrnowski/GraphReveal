@@ -13,8 +13,9 @@ SEPERATOR: ',' | ';';
 
 NOT: 'not' | '!';
 
-VERTEX : 'vertex' | 'vertices' | 'vertexes' | 'verts' | 'V';
-EDGE   : 'edge' | 'edges' | 'E';
+VERTEX    : 'vertex' | 'vertices' | 'vertexes' | 'verts' | 'V';
+EDGE      : 'edge' | 'edges' | 'E';
+COMPONENT : 'component' | 'components' | 'C';
 
 ACYCLIC     : 'acyclic';
 BIPARTITE   : 'bipartite';
