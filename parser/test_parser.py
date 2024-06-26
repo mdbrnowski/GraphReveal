@@ -18,20 +18,25 @@ def test_valid_query(valid_query):
     lexer = QueryLexer(InputStream(valid_query))
     parser = QueryParser(CommonTokenStream(lexer))
 
-    tree = parser.query()
-    assert parser._syntaxErrors == 0
+    parser.query()
+    assert parser.getNumberOfSyntaxErrors() == 0
 
 
 @pytest.mark.parametrize("invalid_query", [
+    "",
+    "1",
+    ","
     "wrong",
     "vertices",
     "edges",
     "component",
     "1 bipartite",
+    "bipartite 1",
+    "6 vertices ,, 8 edges"
 ])
 def test_invalid_query(invalid_query):
     lexer = QueryLexer(InputStream(invalid_query))
     parser = QueryParser(CommonTokenStream(lexer))
 
-    tree = parser.query()
-    assert parser._syntaxErrors > 0
+    parser.query()
+    assert parser.getNumberOfSyntaxErrors() > 0
