@@ -1,3 +1,7 @@
 .idea/*
 
-.antlr/*
+__pycache__/
+
+.antlr/
+*.interp
+*.tokens
