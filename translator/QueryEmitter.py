@@ -6,6 +6,9 @@ from generated.QueryParserListener import QueryParserListener
 class QueryEmitter(QueryParserListener):
     result = ""
 
+    def get_result(self):
+        return self.result
+
     def enterQuery(self, ctx: QueryParser.QueryContext):
         self.result += "SELECT * FROM graphs WHERE TRUE"
 
