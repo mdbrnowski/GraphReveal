@@ -3,7 +3,7 @@ from generated.QueryParser import QueryParser
 from generated.QueryParserListener import QueryParserListener
 
 
-class QueryTranslator(QueryParserListener):
+class QueryEmitter(QueryParserListener):
     result = ""
 
     def enterQuery(self, ctx: QueryParser.QueryContext):
