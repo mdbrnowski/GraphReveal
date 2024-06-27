@@ -1,8 +1,8 @@
 import pytest
 from antlr4 import *
 
-from generated.QueryLexer import QueryLexer
-from generated.QueryParser import QueryParser
+from ..translator.generated.QueryLexer import QueryLexer
+from ..translator.generated.QueryParser import QueryParser
 
 
 @pytest.mark.parametrize("valid_query", [

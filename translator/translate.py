@@ -1,7 +1,7 @@
 from antlr4 import *
-from generated.QueryLexer import QueryLexer
-from generated.QueryParser import QueryParser
-from QueryEmitter import QueryEmitter
+from .generated.QueryLexer import QueryLexer
+from .generated.QueryParser import QueryParser
+from .QueryEmitter import QueryEmitter
 
 
 def translate(input_text, print_parse_tree=False):
@@ -17,8 +17,3 @@ def translate(input_text, print_parse_tree=False):
     walker.walk(translator, tree)
 
     return translator.get_result()
-
-
-if __name__ == '__main__':
-    text = input("> ")
-    print(translate(text, print_parse_tree=True))
