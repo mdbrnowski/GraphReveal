@@ -13,11 +13,15 @@ query
     ;
 
 expr
-    : INTEGER fundamental
+    : NOT? numEntityExpr
     | NOT? boolProperty
     ;
 
-fundamental
+numEntityExpr
+    : INTEGER entity
+    ;
+
+entity
     : VERTEX
     | EDGE
     | COMPONENT

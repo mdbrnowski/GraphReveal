@@ -26,12 +26,21 @@ class QueryParserListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by QueryParser#fundamental.
-    def enterFundamental(self, ctx:QueryParser.FundamentalContext):
+    # Enter a parse tree produced by QueryParser#numEntityExpr.
+    def enterNumEntityExpr(self, ctx:QueryParser.NumEntityExprContext):
         pass
 
-    # Exit a parse tree produced by QueryParser#fundamental.
-    def exitFundamental(self, ctx:QueryParser.FundamentalContext):
+    # Exit a parse tree produced by QueryParser#numEntityExpr.
+    def exitNumEntityExpr(self, ctx:QueryParser.NumEntityExprContext):
+        pass
+
+
+    # Enter a parse tree produced by QueryParser#entity.
+    def enterEntity(self, ctx:QueryParser.EntityContext):
+        pass
+
+    # Exit a parse tree produced by QueryParser#entity.
+    def exitEntity(self, ctx:QueryParser.EntityContext):
         pass
 
 

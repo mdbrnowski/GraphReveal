@@ -10,16 +10,18 @@ else:
 
 def serializedATN():
     return [
-        4,1,14,31,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,1,0,1,0,1,0,5,0,12,8,0,
-        10,0,12,0,15,9,0,1,0,1,0,1,1,1,1,1,1,3,1,22,8,1,1,1,3,1,25,8,1,1,
-        2,1,2,1,3,1,3,1,3,0,0,4,0,2,4,6,0,2,1,0,5,7,1,0,8,14,29,0,8,1,0,
-        0,0,2,24,1,0,0,0,4,26,1,0,0,0,6,28,1,0,0,0,8,13,3,2,1,0,9,10,5,3,
-        0,0,10,12,3,2,1,0,11,9,1,0,0,0,12,15,1,0,0,0,13,11,1,0,0,0,13,14,
-        1,0,0,0,14,16,1,0,0,0,15,13,1,0,0,0,16,17,5,0,0,1,17,1,1,0,0,0,18,
-        19,5,2,0,0,19,25,3,4,2,0,20,22,5,4,0,0,21,20,1,0,0,0,21,22,1,0,0,
-        0,22,23,1,0,0,0,23,25,3,6,3,0,24,18,1,0,0,0,24,21,1,0,0,0,25,3,1,
-        0,0,0,26,27,7,0,0,0,27,5,1,0,0,0,28,29,7,1,0,0,29,7,1,0,0,0,3,13,
-        21,24
+        4,1,14,38,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,1,0,1,0,1,0,5,
+        0,14,8,0,10,0,12,0,17,9,0,1,0,1,0,1,1,3,1,22,8,1,1,1,1,1,3,1,26,
+        8,1,1,1,3,1,29,8,1,1,2,1,2,1,2,1,3,1,3,1,4,1,4,1,4,0,0,5,0,2,4,6,
+        8,0,2,1,0,5,7,1,0,8,14,36,0,10,1,0,0,0,2,28,1,0,0,0,4,30,1,0,0,0,
+        6,33,1,0,0,0,8,35,1,0,0,0,10,15,3,2,1,0,11,12,5,3,0,0,12,14,3,2,
+        1,0,13,11,1,0,0,0,14,17,1,0,0,0,15,13,1,0,0,0,15,16,1,0,0,0,16,18,
+        1,0,0,0,17,15,1,0,0,0,18,19,5,0,0,1,19,1,1,0,0,0,20,22,5,4,0,0,21,
+        20,1,0,0,0,21,22,1,0,0,0,22,23,1,0,0,0,23,29,3,4,2,0,24,26,5,4,0,
+        0,25,24,1,0,0,0,25,26,1,0,0,0,26,27,1,0,0,0,27,29,3,8,4,0,28,21,
+        1,0,0,0,28,25,1,0,0,0,29,3,1,0,0,0,30,31,5,2,0,0,31,32,3,6,3,0,32,
+        5,1,0,0,0,33,34,7,0,0,0,34,7,1,0,0,0,35,36,7,1,0,0,36,9,1,0,0,0,
+        4,15,21,25,28
     ]
 
 class QueryParser ( Parser ):
@@ -44,10 +46,11 @@ class QueryParser ( Parser ):
 
     RULE_query = 0
     RULE_expr = 1
-    RULE_fundamental = 2
-    RULE_boolProperty = 3
+    RULE_numEntityExpr = 2
+    RULE_entity = 3
+    RULE_boolProperty = 4
 
-    ruleNames =  [ "query", "expr", "fundamental", "boolProperty" ]
+    ruleNames =  [ "query", "expr", "numEntityExpr", "entity", "boolProperty" ]
 
     EOF = Token.EOF
     WHITESPACE=1
@@ -118,21 +121,21 @@ class QueryParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 8
+            self.state = 10
             self.expr()
-            self.state = 13
+            self.state = 15
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while _la==3:
-                self.state = 9
+                self.state = 11
                 self.match(QueryParser.SEPERATOR)
-                self.state = 10
+                self.state = 12
                 self.expr()
-                self.state = 15
+                self.state = 17
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
-            self.state = 16
+            self.state = 18
             self.match(QueryParser.EOF)
         except RecognitionException as re:
             localctx.exception = re
@@ -150,19 +153,16 @@ class QueryParser ( Parser ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def INTEGER(self):
-            return self.getToken(QueryParser.INTEGER, 0)
-
-        def fundamental(self):
-            return self.getTypedRuleContext(QueryParser.FundamentalContext,0)
-
-
-        def boolProperty(self):
-            return self.getTypedRuleContext(QueryParser.BoolPropertyContext,0)
+        def numEntityExpr(self):
+            return self.getTypedRuleContext(QueryParser.NumEntityExprContext,0)
 
 
         def NOT(self):
             return self.getToken(QueryParser.NOT, 0)
+
+        def boolProperty(self):
+            return self.getTypedRuleContext(QueryParser.BoolPropertyContext,0)
+
 
         def getRuleIndex(self):
             return QueryParser.RULE_expr
@@ -184,18 +184,11 @@ class QueryParser ( Parser ):
         self.enterRule(localctx, 2, self.RULE_expr)
         self._la = 0 # Token type
         try:
-            self.state = 24
+            self.state = 28
             self._errHandler.sync(self)
-            token = self._input.LA(1)
-            if token in [2]:
+            la_ = self._interp.adaptivePredict(self._input,3,self._ctx)
+            if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 18
-                self.match(QueryParser.INTEGER)
-                self.state = 19
-                self.fundamental()
-                pass
-            elif token in [4, 8, 9, 10, 11, 12, 13, 14]:
-                self.enterOuterAlt(localctx, 2)
                 self.state = 21
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
@@ -205,10 +198,23 @@ class QueryParser ( Parser ):
 
 
                 self.state = 23
+                self.numEntityExpr()
+                pass
+
+            elif la_ == 2:
+                self.enterOuterAlt(localctx, 2)
+                self.state = 25
+                self._errHandler.sync(self)
+                _la = self._input.LA(1)
+                if _la==4:
+                    self.state = 24
+                    self.match(QueryParser.NOT)
+
+
+                self.state = 27
                 self.boolProperty()
                 pass
-            else:
-                raise NoViableAltException(self)
+
 
         except RecognitionException as re:
             localctx.exception = re
@@ -219,7 +225,54 @@ class QueryParser ( Parser ):
         return localctx
 
 
-    class FundamentalContext(ParserRuleContext):
+    class NumEntityExprContext(ParserRuleContext):
+        __slots__ = 'parser'
+
+        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+            super().__init__(parent, invokingState)
+            self.parser = parser
+
+        def INTEGER(self):
+            return self.getToken(QueryParser.INTEGER, 0)
+
+        def entity(self):
+            return self.getTypedRuleContext(QueryParser.EntityContext,0)
+
+
+        def getRuleIndex(self):
+            return QueryParser.RULE_numEntityExpr
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterNumEntityExpr" ):
+                listener.enterNumEntityExpr(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitNumEntityExpr" ):
+                listener.exitNumEntityExpr(self)
+
+
+
+
+    def numEntityExpr(self):
+
+        localctx = QueryParser.NumEntityExprContext(self, self._ctx, self.state)
+        self.enterRule(localctx, 4, self.RULE_numEntityExpr)
+        try:
+            self.enterOuterAlt(localctx, 1)
+            self.state = 30
+            self.match(QueryParser.INTEGER)
+            self.state = 31
+            self.entity()
+        except RecognitionException as re:
+            localctx.exception = re
+            self._errHandler.reportError(self, re)
+            self._errHandler.recover(self, re)
+        finally:
+            self.exitRule()
+        return localctx
+
+
+    class EntityContext(ParserRuleContext):
         __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
@@ -236,27 +289,27 @@ class QueryParser ( Parser ):
             return self.getToken(QueryParser.COMPONENT, 0)
 
         def getRuleIndex(self):
-            return QueryParser.RULE_fundamental
+            return QueryParser.RULE_entity
 
         def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterFundamental" ):
-                listener.enterFundamental(self)
+            if hasattr( listener, "enterEntity" ):
+                listener.enterEntity(self)
 
         def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitFundamental" ):
-                listener.exitFundamental(self)
+            if hasattr( listener, "exitEntity" ):
+                listener.exitEntity(self)
 
 
 
 
-    def fundamental(self):
+    def entity(self):
 
-        localctx = QueryParser.FundamentalContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 4, self.RULE_fundamental)
+        localctx = QueryParser.EntityContext(self, self._ctx, self.state)
+        self.enterRule(localctx, 6, self.RULE_entity)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 26
+            self.state = 33
             _la = self._input.LA(1)
             if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 224) != 0)):
                 self._errHandler.recoverInline(self)
@@ -317,11 +370,11 @@ class QueryParser ( Parser ):
     def boolProperty(self):
 
         localctx = QueryParser.BoolPropertyContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 6, self.RULE_boolProperty)
+        self.enterRule(localctx, 8, self.RULE_boolProperty)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 28
+            self.state = 35
             _la = self._input.LA(1)
             if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 32512) != 0)):
                 self._errHandler.recoverInline(self)
