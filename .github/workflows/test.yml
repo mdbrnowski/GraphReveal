@@ -20,7 +20,7 @@ jobs:
         run: |
           python3 -m pip install --upgrade pip
           python3 -m pip install -r requirements.txt
-      - name: Create and the fill database
+      - name: Create and fill the database
         run: |
           cd db-creator
           ./create.py
