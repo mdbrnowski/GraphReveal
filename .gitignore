@@ -2,6 +2,8 @@
 
 __pycache__/
 
+graphs.db
+
 .antlr/
 *.interp
 *.tokens
