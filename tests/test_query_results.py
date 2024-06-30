@@ -4,6 +4,7 @@ from ..translator.translate import translate
 
 
 @pytest.mark.parametrize('query,expected_count', [
+    ('6 vertices, connected', 112),
     ('!bipartite, acyclic', 0),
 ])
 def test_query_results(query, expected_count):

@@ -18,14 +18,24 @@ class QueryEmitter(QueryParserListener):
             self.result += "NOT "
 
     def enterBoolProperty(self, ctx: QueryParser.BoolPropertyContext):
-        for child in ctx.children:
-            if child.symbol.type == QueryParser.ACYCLIC:
-                self.result += "acyclic = TRUE"
-            if child.symbol.type == QueryParser.BIPARTITE:
-                self.result += "bipartite = TRUE"
-            if child.symbol.type == QueryParser.CONNECTED:
-                self.result += "components = 1"
-            if child.symbol.type == QueryParser.EULERIAN:
-                self.result += "eulerian = TRUE"
-            if child.symbol.type == QueryParser.PLANAR:
-                self.result += "planar = TRUE"
+        child = ctx.children[0]
+        if child.symbol.type == QueryParser.ACYCLIC:
+            self.result += "acyclic = TRUE"
+        if child.symbol.type == QueryParser.BIPARTITE:
+            self.result += "bipartite = TRUE"
+        if child.symbol.type == QueryParser.CONNECTED:
+            self.result += "components = 1"
+        if child.symbol.type == QueryParser.EULERIAN:
+            self.result += "eulerian = TRUE"
+        if child.symbol.type == QueryParser.PLANAR:
+            self.result += "planar = TRUE"
+
+    def enterNumEntityExpr(self, ctx: QueryParser.NumEntityExprContext):
+        num = ctx.children[0].symbol.text
+        entity = ctx.children[1].children[0]
+        if entity.symbol.type == QueryParser.VERTEX:
+            self.result += f"vertices = {num}"
+        if entity.symbol.type == QueryParser.EDGE:
+            self.result += f"edges = {num}"
+        if entity.symbol.type == QueryParser.COMPONENT:
+            self.result += f"components = {num}"
