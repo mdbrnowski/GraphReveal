@@ -1,4 +1,4 @@
-name: Test Parser
+name: Test
 
 on:
   push:
@@ -20,6 +20,11 @@ jobs:
         run: |
           python3 -m pip install --upgrade pip
           python3 -m pip install -r requirements.txt
+      - name: Create and the fill database
+        run: |
+          cd db-creator
+          ./create.py
+          cd ..
       - name: Run tests
         run: |
           python3 -m pytest
