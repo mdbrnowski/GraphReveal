@@ -4,8 +4,15 @@ from ..translator.translate import translate
 
 
 @pytest.mark.parametrize('query,expected_count', [
+    ('1 vertex', 1),
+    ('2 vertices', 2),
     ('6 vertices, connected', 112),
+    ('1 edge, connected', 1),
+    ('3 edges, connected', 3),
+    ('6 edges, connected', 30),
     ('!bipartite, acyclic', 0),
+    ('7 vertices, eulerian', 37),
+    ('5 vertices, connected, planar', 20),
 ])
 def test_query_results(query, expected_count):
     sql_query = translate(query)
