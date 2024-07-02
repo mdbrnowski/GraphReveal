@@ -23,7 +23,7 @@ cur.execute(
         )"""
 )
 
-for n in range(2, 8):
+for n in range(1, 8):
     with open(f"data/graph{n}.g6", encoding="utf-8") as f:
         graphs_g6 = f.read().strip().split("\n")
     for graph_g6 in graphs_g6:
