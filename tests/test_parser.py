@@ -13,6 +13,7 @@ from ..translator.generated.QueryParser import QueryParser
     "2 V, 0 E, 1 C",
     "not acyclic, ! bipartite, connected, eulerian",
     "5 V; !planar",
+    "6 vertices, not complete",
     "not 2 vertices, 1 edge",
 ])
 def test_valid_query(valid_query):

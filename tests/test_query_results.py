@@ -8,10 +8,12 @@ from ..translator.translate import translate
     ('2 vertices', 2),
     ('6 vertices, connected', 112),
     ('6 vertices, connected, not 15 edges', 111),
+    ('6 vertices, connected, not complete', 111),
     ('1 edge, connected', 1),
     ('3 edges, connected', 3),
     ('6 edges, connected', 30),
     ('!bipartite, acyclic', 0),
+    ('5 vertices, complete', 1),
     ('7 vertices, eulerian', 37),
     ('5 vertices, connected, planar', 20),
 ])
