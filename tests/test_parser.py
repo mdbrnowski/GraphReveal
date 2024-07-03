@@ -15,6 +15,7 @@ from ..translator.generated.QueryParser import QueryParser
     "5 V; !planar",
     "6 vertices, not complete",
     "not 2 vertices, 1 edge",
+    "forest; tree"
 ])
 def test_valid_query(valid_query):
     lexer = QueryLexer(InputStream(valid_query))
@@ -34,7 +35,8 @@ def test_valid_query(valid_query):
     "component",
     "1 bipartite",
     "bipartite 1",
-    "6 vertices ,, 8 edges"
+    "6 vertices ,, 8 edges",
+    "6 V 8 E",
 ])
 def test_invalid_query(invalid_query):
     lexer = QueryLexer(InputStream(invalid_query))

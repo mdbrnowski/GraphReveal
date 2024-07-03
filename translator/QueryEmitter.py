@@ -31,6 +31,8 @@ class QueryEmitter(QueryParserListener):
             self.result += "eulerian = TRUE"
         if child.symbol.type == QueryParser.PLANAR:
             self.result += "planar = TRUE"
+        if child.symbol.type == QueryParser.TREE:
+            self.result += "acyclic = TRUE AND components = 1"
 
     def enterNumEntityExpr(self, ctx: QueryParser.NumEntityExprContext):
         num = ctx.children[0].symbol.text
