@@ -10,10 +10,10 @@ else:
 
 def serializedATN():
     return [
-        4,1,14,38,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,1,0,1,0,1,0,5,
+        4,1,15,38,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,1,0,1,0,1,0,5,
         0,14,8,0,10,0,12,0,17,9,0,1,0,1,0,1,1,3,1,22,8,1,1,1,1,1,3,1,26,
         8,1,1,1,3,1,29,8,1,1,2,1,2,1,2,1,3,1,3,1,4,1,4,1,4,0,0,5,0,2,4,6,
-        8,0,2,1,0,5,7,1,0,8,14,36,0,10,1,0,0,0,2,28,1,0,0,0,4,30,1,0,0,0,
+        8,0,2,1,0,5,7,1,0,8,15,36,0,10,1,0,0,0,2,28,1,0,0,0,4,30,1,0,0,0,
         6,33,1,0,0,0,8,35,1,0,0,0,10,15,3,2,1,0,11,12,5,3,0,0,12,14,3,2,
         1,0,13,11,1,0,0,0,14,17,1,0,0,0,15,13,1,0,0,0,15,16,1,0,0,0,16,18,
         1,0,0,0,17,15,1,0,0,0,18,19,5,0,0,1,19,1,1,0,0,0,20,22,5,4,0,0,21,
@@ -36,13 +36,13 @@ class QueryParser ( Parser ):
 
     literalNames = [ "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
                      "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
-                     "'acyclic'", "'bipartite'", "'complete'", "'connected'", 
-                     "<INVALID>", "<INVALID>", "'planar'" ]
+                     "<INVALID>", "'bipartite'", "'complete'", "'connected'", 
+                     "<INVALID>", "<INVALID>", "'planar'", "'tree'" ]
 
     symbolicNames = [ "<INVALID>", "WHITESPACE", "INTEGER", "SEPERATOR", 
                       "NOT", "VERTEX", "EDGE", "COMPONENT", "ACYCLIC", "BIPARTITE", 
                       "COMPLETE", "CONNECTED", "EULERIAN", "HAMILTONIAN", 
-                      "PLANAR" ]
+                      "PLANAR", "TREE" ]
 
     RULE_query = 0
     RULE_expr = 1
@@ -67,6 +67,7 @@ class QueryParser ( Parser ):
     EULERIAN=12
     HAMILTONIAN=13
     PLANAR=14
+    TREE=15
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
@@ -353,6 +354,9 @@ class QueryParser ( Parser ):
         def PLANAR(self):
             return self.getToken(QueryParser.PLANAR, 0)
 
+        def TREE(self):
+            return self.getToken(QueryParser.TREE, 0)
+
         def getRuleIndex(self):
             return QueryParser.RULE_boolProperty
 
@@ -376,7 +380,7 @@ class QueryParser ( Parser ):
             self.enterOuterAlt(localctx, 1)
             self.state = 35
             _la = self._input.LA(1)
-            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 32512) != 0)):
+            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 65280) != 0)):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)

@@ -17,10 +17,11 @@ VERTEX    : 'vertex' | 'vertices' | 'vertexes' | 'verts' | 'V';
 EDGE      : 'edge' | 'edges' | 'E';
 COMPONENT : 'component' | 'components' | 'C';
 
-ACYCLIC     : 'acyclic';
+ACYCLIC     : 'acyclic' | 'forest';
 BIPARTITE   : 'bipartite';
 COMPLETE    : 'complete';
 CONNECTED   : 'connected';
 EULERIAN    : 'eulerian' | 'euler';
 HAMILTONIAN : 'hamiltonian' | 'hamilton';
 PLANAR      : 'planar';
+TREE        : 'tree';

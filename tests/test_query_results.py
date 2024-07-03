@@ -16,6 +16,7 @@ from ..translator.translate import translate
     ('5 vertices, complete', 1),
     ('7 vertices, eulerian', 37),
     ('5 vertices, connected, planar', 20),
+    ('5 vertices, tree', 3),
 ])
 def test_query_results(query, expected_count):
     sql_query = translate(query)

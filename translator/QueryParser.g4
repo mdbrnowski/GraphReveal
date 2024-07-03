@@ -35,4 +35,5 @@ boolProperty
     | EULERIAN
     | HAMILTONIAN // todo: not yet implemented
     | PLANAR
+    | TREE
     ;
