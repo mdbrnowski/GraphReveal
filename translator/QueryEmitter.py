@@ -23,6 +23,8 @@ class QueryEmitter(QueryParserListener):
             self.result += "acyclic = TRUE"
         if child.symbol.type == QueryParser.BIPARTITE:
             self.result += "bipartite = TRUE"
+        if child.symbol.type == QueryParser.COMPLETE:
+            self.result += "vertices * (vertices - 1) / 2 = edges"
         if child.symbol.type == QueryParser.CONNECTED:
             self.result += "components = 1"
         if child.symbol.type == QueryParser.EULERIAN:

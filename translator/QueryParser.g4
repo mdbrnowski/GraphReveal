@@ -30,7 +30,7 @@ entity
 boolProperty
     : ACYCLIC
     | BIPARTITE
-    | COMPLETE // todo: not yet implemented
+    | COMPLETE
     | CONNECTED
     | EULERIAN
     | HAMILTONIAN // todo: not yet implemented
