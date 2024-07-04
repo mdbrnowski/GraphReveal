@@ -29,6 +29,8 @@ class QueryEmitter(QueryParserListener):
             self.result += "components = 1"
         if child.symbol.type == QueryParser.EULERIAN:
             self.result += "eulerian = TRUE"
+        if child.symbol.type == QueryParser.NO_ISOLATED_V:
+            self.result += "degree_min > 0"
         if child.symbol.type == QueryParser.PLANAR:
             self.result += "planar = TRUE"
         if child.symbol.type == QueryParser.TREE:
