@@ -33,7 +33,7 @@ boolProperty
     | COMPLETE
     | CONNECTED
     | EULERIAN
-    | HAMILTONIAN // todo: not yet implemented
+    | HAMILTONIAN
     | NO_ISOLATED_V
     | PLANAR
     | TREE
