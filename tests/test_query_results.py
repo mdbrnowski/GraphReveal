@@ -19,6 +19,13 @@ from ..translator.translate import translate
     ('5 vertices, tree', 3),
     ('5 vertices, 2 components', 8),
     ('3 edges, no isolated vertices', 5),
+    ('1 vertex, hamiltonian', 1),
+    ('2 vertices, hamiltonian', 0),
+    ('3 vertices, hamiltonian', 1),
+    ('4 vertices, hamiltonian', 3),
+    ('5 vertices, hamiltonian', 8),
+    ('6 vertices, hamiltonian', 48),
+    ('7 vertices, hamiltonian', 383),
 ])
 def test_query_results(query, expected_count):
     sql_query = translate(query)

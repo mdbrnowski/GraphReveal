@@ -2,6 +2,7 @@
 
 import sqlite3
 import networkx as nx
+from util import is_hamiltonian
 
 con = sqlite3.connect("../graphs.db")
 cur = con.cursor()
@@ -16,6 +17,7 @@ cur.execute(
             acyclic BOOLEAN NOT NULL,
             bipartite BOOLEAN NOT NULL,
             eulerian BOOLEAN NOT NULL,
+            hamiltonian BOOLEAN NOT NULL,
             planar BOOLEAN NOT NULL,
             components INT NOT NULL,
             degree_max INT NOT NULL,
@@ -29,7 +31,7 @@ for n in range(1, 8):
     for graph_g6 in graphs_g6:
         graph = nx.from_graph6_bytes(str.encode(graph_g6))
         cur.execute(
-            "INSERT INTO graphs VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            "INSERT INTO graphs VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
             [
                 graph_g6,
                 graph.number_of_nodes(),
@@ -37,6 +39,7 @@ for n in range(1, 8):
                 nx.is_forest(graph),
                 nx.is_bipartite(graph),
                 nx.is_eulerian(graph),
+                is_hamiltonian(graph),
                 nx.is_planar(graph),
                 nx.number_connected_components(graph),
                 max(d for _, d in graph.degree()),
