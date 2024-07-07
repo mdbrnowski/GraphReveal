@@ -13,7 +13,7 @@ SEPERATOR: ',' | ';';
 
 NOT: 'not' | '!';
 
-VERTEX    : 'vertex' | 'vertices' | 'vertexes' | 'verts' | 'V';
+VERTEX    : 'vertex' | 'vertices' | 'vertexes' | 'verts' | 'V' | 'node' | 'nodes';
 EDGE      : 'edge' | 'edges' | 'E';
 COMPONENT : 'component' | 'components' | 'C';
 
