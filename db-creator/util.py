@@ -25,7 +25,7 @@ def _find_closure(G: nx.Graph) -> nx.Graph:
 
 
 def is_hamiltonian(G: nx.Graph) -> bool:
-    """ Checks whether a graph G is hamilton or not. """
+    """ Checks whether a graph G is hamiltonian or not. """
     n = G.number_of_nodes()
     if n == 1:
         return True
@@ -33,7 +33,7 @@ def is_hamiltonian(G: nx.Graph) -> bool:
         return False
     if not nx.is_connected(G) or nx.is_tree(G):
         return False
-    if min(d for _, d in G.degree()) == 1:
+    if not nx.is_biconnected(G):
         return False
 
     cl_G = _find_closure(G)
