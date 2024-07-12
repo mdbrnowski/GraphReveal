@@ -1,8 +1,7 @@
 import pytest
 from antlr4 import *
 
-from graph_reveal_tools.translator.generated.QueryLexer import QueryLexer
-from graph_reveal_tools.translator.generated.QueryParser import QueryParser
+from graph_reveal_tools.translator import QueryLexer, QueryParser
 
 
 @pytest.mark.parametrize("valid_query", [

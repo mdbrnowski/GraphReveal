@@ -1,6 +1,6 @@
 import pytest
 import sqlite3
-from graph_reveal_tools.translator.translate import translate
+from graph_reveal_tools.translator import translate
 
 
 @pytest.mark.parametrize('query,expected_count', [

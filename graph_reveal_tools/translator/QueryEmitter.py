@@ -1,6 +1,5 @@
 from antlr4.tree.Tree import ParseTree, TerminalNodeImpl, ErrorNodeImpl, TerminalNode, INVALID_INTERVAL
-from graph_reveal_tools.translator.generated.QueryParser import QueryParser
-from graph_reveal_tools.translator.generated.QueryParserListener import QueryParserListener
+from graph_reveal_tools.translator import QueryParser, QueryParserListener
 
 
 class QueryEmitter(QueryParserListener):

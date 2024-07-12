@@ -1,7 +1,5 @@
 from antlr4 import *
-from graph_reveal_tools.translator.generated.QueryLexer import QueryLexer
-from graph_reveal_tools.translator.generated.QueryParser import QueryParser
-from graph_reveal_tools.translator.QueryEmitter import QueryEmitter
+from graph_reveal_tools.translator import QueryLexer, QueryParser, QueryEmitter
 
 
 def translate(input_text, print_parse_tree=False):
