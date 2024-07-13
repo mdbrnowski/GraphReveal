@@ -4,7 +4,7 @@ import sqlite3
 import networkx as nx
 from util import is_hamiltonian
 
-con = sqlite3.connect("../graphs.db")
+con = sqlite3.connect("../../graphs.db")
 cur = con.cursor()
 
 cur.execute("DROP TABLE IF EXISTS graphs")

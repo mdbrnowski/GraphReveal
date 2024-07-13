@@ -1,3 +1,1 @@
-translator/generated/QueryLexer.py linguist-vendored
-translator/generated/QueryParser.py linguist-vendored
-translator/generated/QueryParserListener.py linguist-vendored
+graph_reveal_tools/translator/generated/*.py linguist-vendored
