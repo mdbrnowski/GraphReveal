@@ -1,6 +1,18 @@
 from antlr4.tree.Tree import ParseTree, TerminalNodeImpl, ErrorNodeImpl, TerminalNode, INVALID_INTERVAL
 from graph_reveal_tools.translator import QueryParser, QueryParserListener
 
+BOOL_PROPERTY_MAP = {
+    QueryParser.ACYCLIC: "acyclic = TRUE",
+    QueryParser.BIPARTITE: "bipartite = TRUE",
+    QueryParser.COMPLETE: "vertices * (vertices - 1) / 2 = edges",
+    QueryParser.CONNECTED: "components = 1",
+    QueryParser.EULERIAN: "eulerian = TRUE",
+    QueryParser.HAMILTONIAN: "hamiltonian = TRUE",
+    QueryParser.NO_ISOLATED_V: "degree_min > 0",
+    QueryParser.PLANAR: "planar = TRUE",
+    QueryParser.TREE: "acyclic = TRUE AND components = 1",
+}
+
 
 class QueryEmitter(QueryParserListener):
     def __init__(self):
@@ -20,24 +32,7 @@ class QueryEmitter(QueryParserListener):
 
     def enterBoolProperty(self, ctx: QueryParser.BoolPropertyContext):
         child = ctx.children[0]
-        if child.symbol.type == QueryParser.ACYCLIC:
-            self.conditions[-1] += "acyclic = TRUE"
-        if child.symbol.type == QueryParser.BIPARTITE:
-            self.conditions[-1] += "bipartite = TRUE"
-        if child.symbol.type == QueryParser.COMPLETE:
-            self.conditions[-1] += "vertices * (vertices - 1) / 2 = edges"
-        if child.symbol.type == QueryParser.CONNECTED:
-            self.conditions[-1] += "components = 1"
-        if child.symbol.type == QueryParser.EULERIAN:
-            self.conditions[-1] += "eulerian = TRUE"
-        if child.symbol.type == QueryParser.HAMILTONIAN:
-            self.conditions[-1] += "hamiltonian = TRUE"
-        if child.symbol.type == QueryParser.NO_ISOLATED_V:
-            self.conditions[-1] += "degree_min > 0"
-        if child.symbol.type == QueryParser.PLANAR:
-            self.conditions[-1] += "planar = TRUE"
-        if child.symbol.type == QueryParser.TREE:
-            self.conditions[-1] += "acyclic = TRUE AND components = 1"
+        self.conditions[-1] += BOOL_PROPERTY_MAP[child.symbol.type]
 
     def enterNumEntityExpr(self, ctx: QueryParser.NumEntityExprContext):
         num = ctx.children[0].symbol.text
