@@ -5,7 +5,7 @@ app = typer.Typer()
 
 
 @app.command()
-def main(query: str, count: bool = False, to_sql: bool = False):
+def main(query: str, count: bool = False, sql: bool = False):
     """
     Get all graphs with given properties.
 
@@ -14,8 +14,8 @@ def main(query: str, count: bool = False, to_sql: bool = False):
     # todo
     if count:
         print('Number of graphs with given properties.')
-    elif to_sql:
-        print('The SQL query.')
+    elif sql:
+        print(translate(query))
     else:
         print(f'Search results for "{translate(query)}".')
 

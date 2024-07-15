@@ -18,7 +18,7 @@ authors = [
 readme = "README.md"
 
 [project.scripts]
-graph-reveal = "graph_reveal_tools.main:app"
+graph-reveal = "graph_reveal_tools.cli:app"
 
 [tool.setuptools]
 packages = ["graph_reveal_tools", "graph_reveal_tools.translator"]
