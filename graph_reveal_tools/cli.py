@@ -1,4 +1,5 @@
 import typer
+from graph_reveal_tools import get_ids
 from graph_reveal_tools.translator import translate
 
 app = typer.Typer()
@@ -11,13 +12,12 @@ def main(query: str, count: bool = False, sql: bool = False):
 
     Currently, graphs with up to 7 vertices are considered.
     """
-    # todo
     if count:
-        print('Number of graphs with given properties.')
+        print(len(get_ids(translate(query))))
     elif sql:
         print(translate(query))
     else:
-        print(f'Search results for "{translate(query)}".')
+        print('\n'.join(get_ids(translate(query))))
 
 
 if __name__ == '__main__':
