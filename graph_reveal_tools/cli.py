@@ -12,10 +12,11 @@ def main(query: str, count: bool = False, sql: bool = False):
 
     Currently, graphs with up to 7 vertices are considered.
     """
-    if count:
-        print(len(get_ids(translate(query))))
-    elif sql:
-        print(translate(query))
+    if count or sql:
+        if count:
+            print(len(get_ids(translate(query))))
+        if sql:
+            print(translate(query))
     else:
         print('\n'.join(get_ids(translate(query))))
 
