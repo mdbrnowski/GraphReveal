@@ -1,5 +1,5 @@
 import pytest
-import sqlite3
+from graph_reveal_tools import get_ids
 from graph_reveal_tools.translator import translate
 
 
@@ -29,11 +29,4 @@ from graph_reveal_tools.translator import translate
 ])
 def test_query_results(query, expected_count):
     sql_query = translate(query)
-
-    con = sqlite3.connect("graphs.db")
-    cur = con.cursor()
-
-    print(sql_query)
-
-    result = cur.execute(sql_query)
-    assert len(result.fetchall()) == expected_count
+    assert len(get_ids(sql_query)) == expected_count
