@@ -2,7 +2,17 @@
 
 The beginnings of what may one day be a graph database search system.
 
+## Installation
+
+Clone the repository and run `pip install -e .` (with a dot at the end).
+
 ## Basic usage
+
+```shell
+graph-reveal --count "6 vertices, connected"
+```
+
+Run `graph-reveal --help` for the full description. You can also use it in your Python script:
 
 ```python
 from graph_reveal_tools.translator import translate
