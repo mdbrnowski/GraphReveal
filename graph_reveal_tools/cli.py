@@ -6,19 +6,20 @@ app = typer.Typer()
 
 
 @app.command()
-def main(query: str, count: bool = False, sql: bool = False):
+def search(query: str, count: bool = False, sql: bool = False):
     """
     Get all graphs with given properties.
 
     Currently, graphs with up to 7 vertices are considered.
     """
+    sql_query = translate(query)
     if count or sql:
         if count:
-            print(len(get_ids(translate(query))))
+            print(len(get_ids(sql_query)))
         if sql:
-            print(translate(query))
+            print(sql_query)
     else:
-        print('\n'.join(get_ids(translate(query))))
+        print('\n'.join(get_ids(sql_query)))
 
 
 if __name__ == '__main__':

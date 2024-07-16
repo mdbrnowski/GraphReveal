@@ -2,7 +2,8 @@ from antlr4 import *
 from graph_reveal_tools.translator import QueryLexer, QueryParser, QueryEmitter
 
 
-def translate(input_text, print_parse_tree=False):
+def translate(input_text: str, print_parse_tree: bool = False) -> str:
+    """ Translates natural language query to SQL beginning with `SELECT * ` """
     lexer = QueryLexer(InputStream(input_text))
     parser = QueryParser(CommonTokenStream(lexer))
     tree = parser.query()

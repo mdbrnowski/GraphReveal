@@ -18,7 +18,7 @@ class QueryEmitter(QueryParserListener):
     def __init__(self):
         self.conditions: list[str] = []
 
-    def get_result(self):
+    def get_result(self) -> str:
         return "SELECT * FROM graphs WHERE " + " AND ".join(self.conditions)
 
     def enterQuery(self, ctx: QueryParser.QueryContext):
