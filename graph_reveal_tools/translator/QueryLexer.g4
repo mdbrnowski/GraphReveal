@@ -13,9 +13,15 @@ SEPERATOR: ',' | ';';
 
 NOT: 'not' | '!';
 
-VERTEX    : 'vertex' | 'vertices' | 'vertexes' | 'verts' | 'V' | 'node' | 'nodes';
-EDGE      : 'edge' | 'edges' | 'E';
-COMPONENT : 'component' | 'components' | 'C';
+VERTEX : 'vertex' | 'vertices' | 'vertexes' | 'verts' | 'V' | 'node' | 'nodes';
+EDGE   : 'edge' | 'edges' | 'E';
+BLOCK:
+    'block'
+    | 'blocks'
+    | 'biconnected component'
+    | 'biconnected components'
+;
+COMPONENT: 'component' | 'components' | 'C';
 
 ACYCLIC       : 'acyclic' | 'forest';
 BIPARTITE     : 'bipartite';

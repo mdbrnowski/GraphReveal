@@ -17,6 +17,7 @@ from graph_reveal_tools.translator import QueryLexer, QueryParser
     "6 vertices, not complete",
     "not 2 vertices, 1 edge",
     "forest; tree; no isolated vertices",
+    "2 biconnected components, 2 blocks",
 ])
 def test_valid_query(valid_query):
     lexer = QueryLexer(InputStream(valid_query))
@@ -39,6 +40,7 @@ def test_valid_query(valid_query):
     "6 vertices ,, 8 edges",
     "6 V 8 E",
     "isolated vertices",
+    "biconnected component component",
 ])
 def test_invalid_query(invalid_query):
     lexer = QueryLexer(InputStream(invalid_query))

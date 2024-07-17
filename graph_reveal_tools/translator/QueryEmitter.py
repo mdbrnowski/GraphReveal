@@ -41,5 +41,7 @@ class QueryEmitter(QueryParserListener):
             self.conditions[-1] += f"vertices = {num}"
         if entity.symbol.type == QueryParser.EDGE:
             self.conditions[-1] += f"edges = {num}"
+        if entity.symbol.type == QueryParser.BLOCK:
+            self.conditions[-1] += f"blocks = {num}"
         if entity.symbol.type == QueryParser.COMPONENT:
             self.conditions[-1] += f"components = {num}"

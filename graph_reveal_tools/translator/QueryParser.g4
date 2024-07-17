@@ -24,6 +24,7 @@ numEntityExpr
 entity
     : VERTEX
     | EDGE
+    | BLOCK
     | COMPONENT
     ;
 
