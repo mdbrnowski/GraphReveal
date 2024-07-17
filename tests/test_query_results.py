@@ -26,6 +26,8 @@ from graph_reveal_tools.translator import translate
     ('5 vertices, hamiltonian', 8),
     ('6 vertices, hamiltonian', 48),
     ('7 vertices, hamiltonian', 383),
+    ('5 vertices, connected, 2 blocks', 5),
+    ('5 vertices, connected, 1 block', 10),
 ])
 def test_query_results(query, expected_count):
     sql_query = translate(query)

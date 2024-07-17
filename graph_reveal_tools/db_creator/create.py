@@ -21,6 +21,7 @@ def main():
                 eulerian BOOLEAN NOT NULL,
                 hamiltonian BOOLEAN NOT NULL,
                 planar BOOLEAN NOT NULL,
+                blocks INT NOT NULL,
                 components INT NOT NULL,
                 degree_max INT NOT NULL,
                 degree_min INT NOT NULL
@@ -33,7 +34,7 @@ def main():
         for graph_g6 in graphs_g6:
             graph = nx.from_graph6_bytes(str.encode(graph_g6))
             cur.execute(
-                "INSERT INTO graphs VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                "INSERT INTO graphs VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                 [
                     graph_g6,
                     graph.number_of_nodes(),
@@ -43,6 +44,7 @@ def main():
                     nx.is_eulerian(graph),
                     is_hamiltonian(graph),
                     nx.is_planar(graph),
+                    len(list(nx.biconnected_components(graph))),
                     nx.number_connected_components(graph),
                     max(d for _, d in graph.degree()),
                     min(d for _, d in graph.degree()),
