@@ -1,6 +1,7 @@
 import typer
 from graph_reveal_tools import get_ids
 from graph_reveal_tools.translator import translate
+from graph_reveal_tools.db_creator import create_db
 
 app = typer.Typer(no_args_is_help=True)
 
@@ -24,7 +25,7 @@ def create_database():
     """
     Create the database.
     """
-    print('Creating database...')
+    create_db()
 
 
 @app.command()

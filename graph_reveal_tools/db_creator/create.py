@@ -2,10 +2,10 @@
 
 import sqlite3
 import networkx as nx
-from util import is_hamiltonian
+from . import util
 
 
-def main():
+def create_db():
     con = sqlite3.connect('../../graphs.db')
     cur = con.cursor()
 
@@ -42,7 +42,7 @@ def main():
                     nx.is_forest(graph),
                     nx.is_bipartite(graph),
                     nx.is_eulerian(graph),
-                    is_hamiltonian(graph),
+                    util.is_hamiltonian(graph),
                     nx.is_planar(graph),
                     len(list(nx.biconnected_components(graph))),
                     nx.number_connected_components(graph),
@@ -56,4 +56,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    create_db()
