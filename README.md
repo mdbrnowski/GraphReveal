@@ -9,7 +9,7 @@ Clone the repository and run `pip install -e .` (with a dot at the end).
 ## Basic usage
 
 ```shell
-graph-reveal --count "6 vertices, connected"
+graph-reveal search --count "6 vertices, connected"
 ```
 
 Run `graph-reveal --help` for the full description. You can also use it in your Python script:
