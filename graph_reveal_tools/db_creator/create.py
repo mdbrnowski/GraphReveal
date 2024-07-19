@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 import sqlite3
 import networkx as nx
 from . import util
