@@ -1,5 +1,5 @@
 import pytest
-from graph_reveal_tools import get_ids
+from graph_reveal_tools.main import get_ids
 from graph_reveal_tools.translator import translate
 
 
