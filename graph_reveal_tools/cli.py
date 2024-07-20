@@ -3,7 +3,7 @@ from sqlite3 import OperationalError
 import rich
 import typer
 
-from graph_reveal_tools import get_ids
+from graph_reveal_tools.main import get_ids
 from graph_reveal_tools.db_creator import create_db
 from graph_reveal_tools.translator import translate
 
