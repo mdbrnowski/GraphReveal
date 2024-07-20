@@ -1,12 +1,16 @@
-#!/usr/bin/env python3
-
 import sqlite3
 import networkx as nx
-from util import is_hamiltonian
+import os.path
+
+import graph_reveal_tools
+from . import util
+
+MAIN_PACKAGE_DIR = os.path.dirname(os.path.dirname(graph_reveal_tools.__file__))
+DB_CREATOR_DIR = os.path.join(MAIN_PACKAGE_DIR, 'graph_reveal_tools', 'db_creator')
 
 
-def main():
-    con = sqlite3.connect('../../graphs.db')
+def create_db():
+    con = sqlite3.connect(os.path.join(MAIN_PACKAGE_DIR, 'graphs.db'))
     cur = con.cursor()
 
     cur.execute("DROP TABLE IF EXISTS graphs")
@@ -29,8 +33,9 @@ def main():
     )
 
     for n in range(1, 8):
-        with open(f'data/graph{n}.g6', encoding='utf-8') as f:
-            graphs_g6 = f.read().strip().split("\n")
+        file_path = os.path.join(DB_CREATOR_DIR, 'data', f'graph{n}.g6')
+        with open(file_path, encoding='utf-8') as f:
+            graphs_g6 = f.read().strip().split('\n')
         for graph_g6 in graphs_g6:
             graph = nx.from_graph6_bytes(str.encode(graph_g6))
             cur.execute(
@@ -42,7 +47,7 @@ def main():
                     nx.is_forest(graph),
                     nx.is_bipartite(graph),
                     nx.is_eulerian(graph),
-                    is_hamiltonian(graph),
+                    util.is_hamiltonian(graph),
                     nx.is_planar(graph),
                     len(list(nx.biconnected_components(graph))),
                     nx.number_connected_components(graph),
@@ -53,7 +58,3 @@ def main():
 
     con.commit()
     con.close()
-
-
-if __name__ == '__main__':
-    main()
