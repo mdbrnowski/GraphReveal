@@ -22,8 +22,7 @@ jobs:
           python3 -m pip install -e .
       - name: Create and fill the database
         run: |
-          cd graph_reveal_tools/db_creator
-          ./create.py
+          graph-reveal create-database
       - name: Run tests
         run: |
           python3 -m pytest
