@@ -33,7 +33,10 @@ def create_database():
     """
     Create the database.
     """
-    create_db()
+    try:
+        create_db()
+    except OperationalError as e:
+        rich.print('[bold red]Error:', str(e) + '.')
 
 
 @app.command()
