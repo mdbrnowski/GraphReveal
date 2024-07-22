@@ -2,12 +2,13 @@ import os.path
 import sqlite3
 
 import networkx as nx
+from rich.progress import track
 
 from graph_reveal_tools import REPO_PATH, DATABASE_PATH
 from . import util
 
 
-def create_db():
+def create_db(max_n: int = 7):
     con = sqlite3.connect(DATABASE_PATH)
     cur = con.cursor()
 
@@ -30,29 +31,32 @@ def create_db():
             )"""
     )
 
-    for n in range(1, 8):
+    all_graphs = []
+
+    for n in range(1, max_n + 1):
         file_path = os.path.join(REPO_PATH, 'graph_reveal_tools', 'db_creator', 'data', f'graph{n}.g6')
         with open(file_path, encoding='utf-8') as f:
-            graphs_g6 = f.read().strip().split('\n')
-        for graph_g6 in graphs_g6:
-            graph = nx.from_graph6_bytes(str.encode(graph_g6))
-            cur.execute(
-                "INSERT INTO graphs VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                [
-                    graph_g6,
-                    graph.number_of_nodes(),
-                    graph.number_of_edges(),
-                    nx.is_forest(graph),
-                    nx.is_bipartite(graph),
-                    nx.is_eulerian(graph),
-                    util.is_hamiltonian(graph),
-                    nx.is_planar(graph),
-                    len(list(nx.biconnected_components(graph))),
-                    nx.number_connected_components(graph),
-                    max(d for _, d in graph.degree()),
-                    min(d for _, d in graph.degree()),
-                ],
-            )
+            all_graphs += f.read().strip().split('\n')
+
+    for graph_g6 in track(all_graphs, description='Creating the database'):
+        graph = nx.from_graph6_bytes(str.encode(graph_g6))
+        cur.execute(
+            "INSERT INTO graphs VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            [
+                graph_g6,
+                graph.number_of_nodes(),
+                graph.number_of_edges(),
+                nx.is_forest(graph),
+                nx.is_bipartite(graph),
+                nx.is_eulerian(graph),
+                util.is_hamiltonian(graph),
+                nx.is_planar(graph),
+                len(list(nx.biconnected_components(graph))),
+                nx.number_connected_components(graph),
+                max(d for _, d in graph.degree()),
+                min(d for _, d in graph.degree()),
+            ],
+        )
 
     con.commit()
     con.close()
