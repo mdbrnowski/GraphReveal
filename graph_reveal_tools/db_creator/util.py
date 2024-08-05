@@ -41,3 +41,11 @@ def is_hamiltonian(G: nx.Graph) -> bool:
         return True
 
     return nx.isomorphism.GraphMatcher(G, nx.cycle_graph(n)).subgraph_is_monomorphic()
+
+
+def max_degree(graph: nx.Graph) -> int:
+    return max(d for _, d in graph.degree())
+
+
+def min_degree(graph: nx.Graph) -> int:
+    return min(d for _, d in graph.degree())

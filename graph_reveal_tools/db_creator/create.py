@@ -53,8 +53,8 @@ def create_db(max_n: int = 7):
                 nx.is_planar(graph),
                 len(list(nx.biconnected_components(graph))),
                 nx.number_connected_components(graph),
-                max(d for _, d in graph.degree()),
-                min(d for _, d in graph.degree()),
+                util.max_degree(graph),
+                util.min_degree(graph),
             ],
         )
 
