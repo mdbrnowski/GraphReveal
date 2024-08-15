@@ -8,7 +8,7 @@ from graph_reveal_tools import REPO_PATH, DATABASE_PATH
 from . import util
 
 
-def create_db(max_n: int = 7):
+def create_db(max_n):
     con = sqlite3.connect(DATABASE_PATH)
     cur = con.cursor()
 

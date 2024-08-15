@@ -14,8 +14,6 @@ app = typer.Typer(no_args_is_help=True)
 def search(query: str, count: bool = False):
     """
     Get all graphs with given properties.
-
-    Currently, graphs with up to 7 vertices are considered.
     """
     sql_query = translate(query)
     try:
@@ -29,12 +27,16 @@ def search(query: str, count: bool = False):
 
 
 @app.command()
-def create_database():
+def create_database(n: int = 7):
     """
     Create the database.
     """
+    if n > 9 or n < 1:
+        rich.print('[bold red]Error: Choose n between 1 and 9.')
+        return
+
     try:
-        create_db()
+        create_db(n)
     except OperationalError as e:
         rich.print('[bold red]Error:', str(e) + '.')
 
