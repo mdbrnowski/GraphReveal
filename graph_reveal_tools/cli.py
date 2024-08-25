@@ -3,7 +3,7 @@ from sqlite3 import OperationalError
 import rich
 import typer
 
-from graph_reveal_tools.main import get_ids
+from graph_reveal_tools.main import get_ids, ParsingError
 from graph_reveal_tools.db_creator import create_db
 from graph_reveal_tools.translator import translate
 
@@ -15,12 +15,14 @@ def search(query: str, count: bool = False):
     """
     Get all graphs with given properties.
     """
-    sql_query = translate(query)
     try:
+        sql_query = translate(query)
         if count:
             print(len(get_ids(sql_query)))
         else:
             print('\n'.join(get_ids(sql_query)))
+    except ParsingError as e:
+        rich.print('[bold red]Error:', str(e) + '.')
     except OperationalError as e:
         rich.print('[bold red]Error:', str(e) + '.')
         rich.print('Try to create the database first. Run `[cyan]graph-reveal create-database[/cyan]`.')
@@ -46,8 +48,11 @@ def to_sql(query: str):
     """
     Translate your query to SQL.
     """
-    sql_query = translate(query)
-    print(sql_query)
+    try:
+        sql_query = translate(query)
+        print(sql_query)
+    except ParsingError as e:
+        rich.print('[bold red]Error:', str(e) + '.')
 
 
 if __name__ == '__main__':
