@@ -1,5 +1,5 @@
 from antlr4.tree.Tree import ParseTree, TerminalNodeImpl, ErrorNodeImpl, TerminalNode, INVALID_INTERVAL
-from graph_reveal_tools.translator import QueryParser, QueryParserListener
+from graphreveal_tools.translator import QueryParser, QueryParserListener
 
 BOOL_PROPERTY_MAP = {
     QueryParser.ACYCLIC: "acyclic = TRUE",

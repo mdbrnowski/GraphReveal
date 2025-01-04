@@ -1,6 +1,6 @@
 import sqlite3
 
-from graph_reveal_tools import DATABASE_PATH
+from graphreveal_tools import DATABASE_PATH
 
 
 class ParsingError(Exception):

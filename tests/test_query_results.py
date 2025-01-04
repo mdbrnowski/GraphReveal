@@ -1,6 +1,6 @@
 import pytest
-from graph_reveal_tools.main import get_ids
-from graph_reveal_tools.translator import translate
+from graphreveal_tools.main import get_ids
+from graphreveal_tools.translator import translate
 
 
 @pytest.mark.parametrize('query,expected_count', [

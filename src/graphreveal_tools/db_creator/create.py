@@ -4,7 +4,7 @@ import sqlite3
 import networkx as nx
 from rich.progress import track
 
-from graph_reveal_tools import REPO_PATH, DATABASE_PATH
+from graphreveal_tools import REPO_PATH, DATABASE_PATH
 from . import util
 
 
