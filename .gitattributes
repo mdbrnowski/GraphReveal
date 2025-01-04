@@ -1,1 +1,1 @@
-graph_reveal_tools/translator/generated/*.py linguist-vendored
+src/graphreveal_tools/translator/generated/* linguist-generated=true
