@@ -2,7 +2,7 @@ import networkx as nx
 
 
 def _find_closure(G: nx.Graph) -> nx.Graph:
-    """ Returns a graph cl(G) defined as in Bondy-Chvátal Theorem. """
+    """Returns a graph cl(G) defined as in Bondy-Chvátal Theorem."""
     G = G.copy()
     n = G.number_of_nodes()
     edges_to_add = []
@@ -25,7 +25,7 @@ def _find_closure(G: nx.Graph) -> nx.Graph:
 
 
 def is_hamiltonian(G: nx.Graph) -> bool:
-    """ Checks whether a graph G is hamiltonian or not. """
+    """Checks whether a graph G is hamiltonian or not."""
     n = G.number_of_nodes()
     if n == 1:
         return True
@@ -37,7 +37,10 @@ def is_hamiltonian(G: nx.Graph) -> bool:
         return False
 
     cl_G = _find_closure(G)
-    if cl_G.number_of_edges() == cl_G.number_of_nodes() * (cl_G.number_of_nodes() - 1) / 2:
+    if (
+        cl_G.number_of_edges()
+        == cl_G.number_of_nodes() * (cl_G.number_of_nodes() - 1) / 2
+    ):
         return True
 
     return nx.isomorphism.GraphMatcher(G, nx.cycle_graph(n)).subgraph_is_monomorphic()

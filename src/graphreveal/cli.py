@@ -20,12 +20,14 @@ def search(query: str, count: bool = False):
         if count:
             print(len(get_ids(sql_query)))
         else:
-            print('\n'.join(get_ids(sql_query)))
+            print("\n".join(get_ids(sql_query)))
     except ParsingError as e:
-        rich.print('[bold red]Error:', str(e) + '.')
+        rich.print("[bold red]Error:", str(e) + ".")
     except OperationalError as e:
-        rich.print('[bold red]Error:', str(e) + '.')
-        rich.print('Try to create the database first. Run `[cyan]graph-reveal create-database[/cyan]`.')
+        rich.print("[bold red]Error:", str(e) + ".")
+        rich.print(
+            "Try to create the database first. Run `[cyan]graph-reveal create-database[/cyan]`."
+        )
 
 
 @app.command()
@@ -34,13 +36,13 @@ def create_database(n: int = 7):
     Create the database.
     """
     if n > 9 or n < 1:
-        rich.print('[bold red]Error: Choose n between 1 and 9.')
+        rich.print("[bold red]Error: Choose n between 1 and 9.")
         return
 
     try:
         create_db(n)
     except OperationalError as e:
-        rich.print('[bold red]Error:', str(e) + '.')
+        rich.print("[bold red]Error:", str(e) + ".")
 
 
 @app.command()
@@ -52,8 +54,8 @@ def to_sql(query: str):
         sql_query = translate(query)
         print(sql_query)
     except ParsingError as e:
-        rich.print('[bold red]Error:', str(e) + '.')
+        rich.print("[bold red]Error:", str(e) + ".")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app()

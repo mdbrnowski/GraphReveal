@@ -1,17 +1,17 @@
-from antlr4 import *
+from antlr4 import InputStream, CommonTokenStream, ParseTreeWalker
 
 from graphreveal_tools.main import ParsingError
 from graphreveal_tools.translator import QueryLexer, QueryParser, QueryEmitter
 
 
 def translate(input_text: str, print_parse_tree: bool = False) -> str:
-    """ Translates natural language query to SQL beginning with `SELECT * ` """
+    """Translates natural language query to SQL beginning with `SELECT * `"""
     lexer = QueryLexer(InputStream(input_text))
     parser = QueryParser(CommonTokenStream(lexer))
     tree = parser.query()
 
     if parser.getNumberOfSyntaxErrors() > 0:
-        raise ParsingError('Your query is invalid')
+        raise ParsingError("Your query is invalid")
 
     if print_parse_tree:
         print(tree.toStringTree(recog=parser))

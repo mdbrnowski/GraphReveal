@@ -34,11 +34,13 @@ def create_db(max_n):
     all_graphs = []
 
     for n in range(1, max_n + 1):
-        file_path = os.path.join(REPO_PATH, 'graph_reveal_tools', 'db_creator', 'data', f'graph{n}.g6')
-        with open(file_path, encoding='utf-8') as f:
-            all_graphs += f.read().strip().split('\n')
+        file_path = os.path.join(
+            REPO_PATH, "graph_reveal_tools", "db_creator", "data", f"graph{n}.g6"
+        )
+        with open(file_path, encoding="utf-8") as f:
+            all_graphs += f.read().strip().split("\n")
 
-    for graph_g6 in track(all_graphs, description='Creating the database'):
+    for graph_g6 in track(all_graphs, description="Creating the database"):
         graph = nx.from_graph6_bytes(str.encode(graph_g6))
         cur.execute(
             "INSERT INTO graphs VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",

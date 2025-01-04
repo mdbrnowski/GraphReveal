@@ -1,4 +1,5 @@
-from antlr4.tree.Tree import ParseTree, TerminalNodeImpl, ErrorNodeImpl, TerminalNode, INVALID_INTERVAL
+from antlr4.tree.Tree import TerminalNodeImpl
+
 from graphreveal_tools.translator import QueryParser, QueryParserListener
 
 BOOL_PROPERTY_MAP = {
@@ -25,7 +26,10 @@ class QueryEmitter(QueryParserListener):
         self.conditions.clear()
 
     def enterExpr(self, ctx: QueryParser.ExprContext):
-        if isinstance(ctx.children[0], TerminalNodeImpl) and ctx.children[0].symbol.type == QueryParser.NOT:
+        if (
+            isinstance(ctx.children[0], TerminalNodeImpl)
+            and ctx.children[0].symbol.type == QueryParser.NOT
+        ):
             self.conditions.append("NOT ")
         else:
             self.conditions.append("")
