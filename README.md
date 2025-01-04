@@ -1,31 +1,25 @@
 # GraphReveal
 
-The beginnings of what may one day be a graph database search system.
+Small graphs database and search system.
 
 ## Installation
 
-Clone the repository and run `pip install -e .` (with a dot at the end).
+To install GraphReveal, you need to clone the repository from GitHub. Then, navigate to the cloned repository directory:
+
+```shell
+cd GraphReveal
+```
+
+Finally, install the package using `pip`:
+
+```shell
+pip install .
+```
 
 ## Basic usage
 
 ```shell
-graph-reveal search --count "6 vertices, connected"
+graphreveal search --count "6 vertices, connected"
 ```
 
-Run `graph-reveal --help` for the full description. You can also use it in your Python script:
-
-```python
-from graph_reveal_tools.translator import translate
-
-translate('6 vertices, connected, bipartite')
-```
-
-## Generate parser and lexer yourself
-
-Your should have [ANTLR 4](https://www.antlr.org/) installed.
-
-```shell
-cd graph_reveal_tools/translator
-antlr4 -o generated -Dlanguage=Python3 QueryLexer.g4
-antlr4 -o generated -Dlanguage=Python3 QueryParser.g4
-```
+Run `graphreveal --help` for the full description.
