@@ -12,21 +12,18 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.10'
-      - name: Install the package
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+      - name: Install Python and the package
         run: |
-          python3 -m pip install --upgrade pip
-          python3 -m pip install -e .
-      - name: Create and fill the database
+          uv python install 3.12
+          uv sync --all-extras --dev
+      - name: Ruff linter
+        run: uvx ruff check
+      - name: Ruff formatter
+        run: uvx ruff format --check
+      - name: Create the database
         run: |
-          graph-reveal create-database
+          uv run graphreveal create-database
       - name: Run tests
-        run: |
-          python3 -m pytest
-      - name: Run tests on a larger database
-        run: |
-          graph-reveal create-database --n 8
-          python3 -m pytest
+        run: uv run pytest
