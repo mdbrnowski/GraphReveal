@@ -15,7 +15,7 @@ dependencies = [
 ]
 
 [project.scripts]
-graphreveal = "graphreveal:main"
+graphreveal = "graphreveal.cli:app"
 
 [build-system]
 requires = ["hatchling"]

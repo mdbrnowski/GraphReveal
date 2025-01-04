@@ -1,5 +1,5 @@
 from typer.testing import CliRunner
-from graphreveal_tools.cli import app
+from graphreveal.cli import app
 
 runner = CliRunner()
 
