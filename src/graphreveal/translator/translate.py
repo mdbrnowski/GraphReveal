@@ -1,6 +1,6 @@
 from antlr4 import InputStream, CommonTokenStream, ParseTreeWalker
 
-from graphreveal.main import ParsingError
+from graphreveal import ParsingError
 from graphreveal.translator import QueryLexer, QueryParser, QueryEmitter
 
 

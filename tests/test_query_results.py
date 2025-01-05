@@ -1,5 +1,5 @@
 import pytest
-from graphreveal.main import get_ids
+from graphreveal import get_ids
 from graphreveal.translator import translate
 
 
