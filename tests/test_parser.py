@@ -1,7 +1,7 @@
 import pytest
 from antlr4 import InputStream, CommonTokenStream
 
-from graphreveal_tools.translator import QueryLexer, QueryParser
+from graphreveal.translator import QueryLexer, QueryParser
 
 
 @pytest.mark.parametrize(

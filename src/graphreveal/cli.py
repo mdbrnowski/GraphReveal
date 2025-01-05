@@ -3,9 +3,9 @@ from sqlite3 import OperationalError
 import rich
 import typer
 
-from graphreveal_tools.main import get_ids, ParsingError
-from graphreveal_tools.db_creator import create_db
-from graphreveal_tools.translator import translate
+from graphreveal import get_ids, ParsingError
+from graphreveal.db_creator import create_db
+from graphreveal.translator import translate
 
 app = typer.Typer(no_args_is_help=True)
 

@@ -1,6 +1,6 @@
 from antlr4.tree.Tree import TerminalNodeImpl
 
-from graphreveal_tools.translator import QueryParser, QueryParserListener
+from graphreveal.translator import QueryParser, QueryParserListener
 
 BOOL_PROPERTY_MAP = {
     QueryParser.ACYCLIC: "acyclic = TRUE",
