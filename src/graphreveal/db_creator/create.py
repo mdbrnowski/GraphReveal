@@ -4,7 +4,7 @@ import sqlite3
 import networkx as nx
 from rich.progress import track
 
-from graphreveal_tools import PKG_PATH, DATABASE_PATH
+from graphreveal import PKG_PATH, DATABASE_PATH
 from . import util
 
 
@@ -35,7 +35,7 @@ def create_db(max_n):
 
     for n in range(1, max_n + 1):
         file_path = os.path.join(
-            PKG_PATH, "graphreveal_tools", "db_creator", "data", f"graph{n}.g6"
+            PKG_PATH, "graphreveal", "db_creator", "data", f"graph{n}.g6"
         )
         with open(file_path, encoding="utf-8") as f:
             all_graphs += f.read().strip().split("\n")

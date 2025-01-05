@@ -1,6 +1,6 @@
 import pytest
-from graphreveal_tools.main import get_ids
-from graphreveal_tools.translator import translate
+from graphreveal.main import get_ids
+from graphreveal.translator import translate
 
 
 @pytest.mark.parametrize(

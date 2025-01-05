@@ -1,7 +1,7 @@
 from antlr4 import InputStream, CommonTokenStream, ParseTreeWalker
 
-from graphreveal_tools.main import ParsingError
-from graphreveal_tools.translator import QueryLexer, QueryParser, QueryEmitter
+from graphreveal.main import ParsingError
+from graphreveal.translator import QueryLexer, QueryParser, QueryEmitter
 
 
 def translate(input_text: str, print_parse_tree: bool = False) -> str:
