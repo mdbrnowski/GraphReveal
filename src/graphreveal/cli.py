@@ -1,9 +1,11 @@
+import os
 from sqlite3 import OperationalError
 
 import rich
 import typer
+from rich.prompt import Confirm
 
-from graphreveal import get_ids, ParsingError
+from graphreveal import get_ids, ParsingError, DATABASE_PATH
 from graphreveal.db_creator import create_db
 from graphreveal.translator import translate
 
@@ -26,7 +28,7 @@ def search(query: str, count: bool = False):
     except OperationalError as e:
         rich.print("[bold red]Error:", str(e) + ".")
         rich.print(
-            "Try to create the database first. Run `[cyan]graph-reveal create-database[/cyan]`."
+            "Try to create the database first. Run `[cyan]graphreveal create-database[/cyan]`."
         )
 
 
@@ -40,7 +42,10 @@ def create_database(n: int = 7):
         return
 
     try:
-        create_db(n)
+        if not os.path.exists(DATABASE_PATH) or Confirm.ask(
+                "Are you sure you want to overwrite the database?"
+        ):
+            create_db(n)
     except OperationalError as e:
         rich.print("[bold red]Error:", str(e) + ".")
 
