@@ -1,7 +1,7 @@
-from antlr4 import InputStream, CommonTokenStream, ParseTreeWalker
+from antlr4 import InputStream, CommonTokenStream
 
 from graphreveal import ParsingError
-from graphreveal.translator import QueryLexer, QueryParser, QueryEmitter
+from graphreveal.translator import QueryLexer, QueryParser, QueryTranslator
 
 
 def translate(input_text: str, print_parse_tree: bool = False) -> str:
@@ -16,8 +16,5 @@ def translate(input_text: str, print_parse_tree: bool = False) -> str:
     if print_parse_tree:
         print(tree.toStringTree(recog=parser))
 
-    walker = ParseTreeWalker()
-    translator = QueryEmitter()
-    walker.walk(translator, tree)
-
-    return translator.get_result()
+    translator = QueryTranslator()
+    return "SELECT * FROM graphs WHERE " + translator.visit(tree)
