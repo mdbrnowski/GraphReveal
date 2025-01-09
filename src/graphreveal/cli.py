@@ -13,7 +13,7 @@ app = typer.Typer(no_args_is_help=True)
 
 
 def _print_parsing_error(query: str, e: ParsingError):
-    rich.print(f"[bold red]Query error:\n")
+    rich.print("[bold red]Query error:\n")
     for i, query_line in enumerate(query.split("\n"), start=1):
         query_line += " "
         if i == e.error_line:
