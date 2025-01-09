@@ -35,7 +35,8 @@ def test_valid_query(valid_query):
     [
         "",
         "1",
-        "," "wrong",
+        ",",
+        "wrong",
         "vertices",
         "edges",
         "component",
