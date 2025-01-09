@@ -14,7 +14,7 @@ class QueryErrorListener(ErrorListener):
             length = offendingSymbol.stop - offendingSymbol.start + 1
         elif isinstance(recognizer, QueryLexer):
             length = len(msg.split("recognition error at: ")[1]) - 2
-        else:
+        else:  # this should not happen
             raise AssertionError("length of this error cannot be determined")
         length = max(1, length)
         self.errors.append((line, column, length))
@@ -38,10 +38,10 @@ def translate(input_text: str, print_parse_tree: bool = False) -> str:
         print(tree.toStringTree(recog=parser))
 
     if lexer_error_listener.errors:
-        raise ParsingError("Your query is invalid", lexer_error_listener.errors[0])
+        raise ParsingError("Your query is invalid", lexer_error_listener.errors)
 
     if parser_error_listener.errors:
-        raise ParsingError("Your query is invalid", parser_error_listener.errors[0])
+        raise ParsingError("Your query is invalid", parser_error_listener.errors)
 
     translator = QueryTranslator()
     return "SELECT * FROM graphs WHERE " + translator.visit(tree)
