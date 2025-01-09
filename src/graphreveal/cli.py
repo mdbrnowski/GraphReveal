@@ -43,7 +43,7 @@ def create_database(n: int = 7):
 
     try:
         if not os.path.exists(DATABASE_PATH) or Confirm.ask(
-                "Are you sure you want to overwrite the database?"
+            "Are you sure you want to overwrite the database?"
         ):
             create_db(n)
     except OperationalError as e:
