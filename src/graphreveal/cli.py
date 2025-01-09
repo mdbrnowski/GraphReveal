@@ -18,9 +18,9 @@ def _print_parsing_error(query: str, e: ParsingError):
         query_line += " "
         if i == e.error_line:
             rich.print(
-                f"  [not bold cyan]{query_line[:e.error_column]}"
-                f"[bold red]{query_line[e.error_column:e.error_column + e.error_length]}"
-                f"[not bold cyan]{query_line[e.error_column + e.error_length:]}"
+                f"  [not bold cyan]{query_line[: e.error_column]}"
+                f"[bold red]{query_line[e.error_column : e.error_column + e.error_length]}"
+                f"[not bold cyan]{query_line[e.error_column + e.error_length :]}"
             )
             rich.print(f"  {' ' * e.error_column}[red]{'^' * e.error_length}")
         else:
