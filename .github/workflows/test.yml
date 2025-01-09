@@ -28,6 +28,6 @@ jobs:
         run: uvx ruff format --check
       - name: Create the database
         run: |
-          graphreveal create-database
+          uv run graphreveal create-database
       - name: Run tests
         run: uv run pytest
