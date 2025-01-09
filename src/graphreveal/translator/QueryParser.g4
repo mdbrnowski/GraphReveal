@@ -13,11 +13,13 @@ query
     ;
 
 expr
-    : NOT? numEntityExpr
-    | NOT? boolProperty
+    : numEntityProperty     # simpleExpr
+    | boolProperty          # simpleExpr
+    | NOT numEntityProperty # notExpr
+    | NOT boolProperty      # notExpr
     ;
 
-numEntityExpr
+numEntityProperty
     : INTEGER entity
     ;
 

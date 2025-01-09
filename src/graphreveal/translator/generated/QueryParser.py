@@ -1,4 +1,4 @@
-# Generated from QueryParser.g4 by ANTLR 4.13.1
+# Generated from QueryParser.g4 by ANTLR 4.13.2
 # encoding: utf-8
 from antlr4 import *
 from io import StringIO
@@ -10,18 +10,17 @@ else:
 
 def serializedATN():
     return [
-        4,1,17,38,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,1,0,1,0,1,0,5,
-        0,14,8,0,10,0,12,0,17,9,0,1,0,1,0,1,1,3,1,22,8,1,1,1,1,1,3,1,26,
-        8,1,1,1,3,1,29,8,1,1,2,1,2,1,2,1,3,1,3,1,4,1,4,1,4,0,0,5,0,2,4,6,
-        8,0,2,1,0,5,8,1,0,9,17,36,0,10,1,0,0,0,2,28,1,0,0,0,4,30,1,0,0,0,
-        6,33,1,0,0,0,8,35,1,0,0,0,10,15,3,2,1,0,11,12,5,3,0,0,12,14,3,2,
-        1,0,13,11,1,0,0,0,14,17,1,0,0,0,15,13,1,0,0,0,15,16,1,0,0,0,16,18,
-        1,0,0,0,17,15,1,0,0,0,18,19,5,0,0,1,19,1,1,0,0,0,20,22,5,4,0,0,21,
-        20,1,0,0,0,21,22,1,0,0,0,22,23,1,0,0,0,23,29,3,4,2,0,24,26,5,4,0,
-        0,25,24,1,0,0,0,25,26,1,0,0,0,26,27,1,0,0,0,27,29,3,8,4,0,28,21,
-        1,0,0,0,28,25,1,0,0,0,29,3,1,0,0,0,30,31,5,2,0,0,31,32,3,6,3,0,32,
-        5,1,0,0,0,33,34,7,0,0,0,34,7,1,0,0,0,35,36,7,1,0,0,36,9,1,0,0,0,
-        4,15,21,25,28
+        4,1,17,36,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,1,0,1,0,1,0,5,
+        0,14,8,0,10,0,12,0,17,9,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,3,1,27,
+        8,1,1,2,1,2,1,2,1,3,1,3,1,4,1,4,1,4,0,0,5,0,2,4,6,8,0,2,1,0,5,8,
+        1,0,9,17,34,0,10,1,0,0,0,2,26,1,0,0,0,4,28,1,0,0,0,6,31,1,0,0,0,
+        8,33,1,0,0,0,10,15,3,2,1,0,11,12,5,3,0,0,12,14,3,2,1,0,13,11,1,0,
+        0,0,14,17,1,0,0,0,15,13,1,0,0,0,15,16,1,0,0,0,16,18,1,0,0,0,17,15,
+        1,0,0,0,18,19,5,0,0,1,19,1,1,0,0,0,20,27,3,4,2,0,21,27,3,8,4,0,22,
+        23,5,4,0,0,23,27,3,4,2,0,24,25,5,4,0,0,25,27,3,8,4,0,26,20,1,0,0,
+        0,26,21,1,0,0,0,26,22,1,0,0,0,26,24,1,0,0,0,27,3,1,0,0,0,28,29,5,
+        2,0,0,29,30,3,6,3,0,30,5,1,0,0,0,31,32,7,0,0,0,32,7,1,0,0,0,33,34,
+        7,1,0,0,34,9,1,0,0,0,2,15,26
     ]
 
 class QueryParser ( Parser ):
@@ -47,11 +46,11 @@ class QueryParser ( Parser ):
 
     RULE_query = 0
     RULE_expr = 1
-    RULE_numEntityExpr = 2
+    RULE_numEntityProperty = 2
     RULE_entity = 3
     RULE_boolProperty = 4
 
-    ruleNames =  [ "query", "expr", "numEntityExpr", "entity", "boolProperty" ]
+    ruleNames =  [ "query", "expr", "numEntityProperty", "entity", "boolProperty" ]
 
     EOF = Token.EOF
     WHITESPACE=1
@@ -74,7 +73,7 @@ class QueryParser ( Parser ):
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
-        self.checkVersion("4.13.1")
+        self.checkVersion("4.13.2")
         self._interp = ParserATNSimulator(self, self.atn, self.decisionsToDFA, self.sharedContextCache)
         self._predicates = None
 
@@ -107,13 +106,11 @@ class QueryParser ( Parser ):
         def getRuleIndex(self):
             return QueryParser.RULE_query
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterQuery" ):
-                listener.enterQuery(self)
-
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitQuery" ):
-                listener.exitQuery(self)
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitQuery" ):
+                return visitor.visitQuery(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -157,28 +154,56 @@ class QueryParser ( Parser ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def numEntityExpr(self):
-            return self.getTypedRuleContext(QueryParser.NumEntityExprContext,0)
+
+        def getRuleIndex(self):
+            return QueryParser.RULE_expr
+
+     
+        def copyFrom(self, ctx:ParserRuleContext):
+            super().copyFrom(ctx)
 
 
-        def NOT(self):
-            return self.getToken(QueryParser.NOT, 0)
+
+    class SimpleExprContext(ExprContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a QueryParser.ExprContext
+            super().__init__(parser)
+            self.copyFrom(ctx)
+
+        def numEntityProperty(self):
+            return self.getTypedRuleContext(QueryParser.NumEntityPropertyContext,0)
 
         def boolProperty(self):
             return self.getTypedRuleContext(QueryParser.BoolPropertyContext,0)
 
 
-        def getRuleIndex(self):
-            return QueryParser.RULE_expr
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitSimpleExpr" ):
+                return visitor.visitSimpleExpr(self)
+            else:
+                return visitor.visitChildren(self)
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterExpr" ):
-                listener.enterExpr(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitExpr" ):
-                listener.exitExpr(self)
+    class NotExprContext(ExprContext):
 
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a QueryParser.ExprContext
+            super().__init__(parser)
+            self.copyFrom(ctx)
+
+        def NOT(self):
+            return self.getToken(QueryParser.NOT, 0)
+        def numEntityProperty(self):
+            return self.getTypedRuleContext(QueryParser.NumEntityPropertyContext,0)
+
+        def boolProperty(self):
+            return self.getTypedRuleContext(QueryParser.BoolPropertyContext,0)
+
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitNotExpr" ):
+                return visitor.visitNotExpr(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -186,36 +211,39 @@ class QueryParser ( Parser ):
 
         localctx = QueryParser.ExprContext(self, self._ctx, self.state)
         self.enterRule(localctx, 2, self.RULE_expr)
-        self._la = 0 # Token type
         try:
-            self.state = 28
+            self.state = 26
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,3,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input,1,self._ctx)
             if la_ == 1:
+                localctx = QueryParser.SimpleExprContext(self, localctx)
                 self.enterOuterAlt(localctx, 1)
-                self.state = 21
-                self._errHandler.sync(self)
-                _la = self._input.LA(1)
-                if _la==4:
-                    self.state = 20
-                    self.match(QueryParser.NOT)
-
-
-                self.state = 23
-                self.numEntityExpr()
+                self.state = 20
+                self.numEntityProperty()
                 pass
 
             elif la_ == 2:
+                localctx = QueryParser.SimpleExprContext(self, localctx)
                 self.enterOuterAlt(localctx, 2)
+                self.state = 21
+                self.boolProperty()
+                pass
+
+            elif la_ == 3:
+                localctx = QueryParser.NotExprContext(self, localctx)
+                self.enterOuterAlt(localctx, 3)
+                self.state = 22
+                self.match(QueryParser.NOT)
+                self.state = 23
+                self.numEntityProperty()
+                pass
+
+            elif la_ == 4:
+                localctx = QueryParser.NotExprContext(self, localctx)
+                self.enterOuterAlt(localctx, 4)
+                self.state = 24
+                self.match(QueryParser.NOT)
                 self.state = 25
-                self._errHandler.sync(self)
-                _la = self._input.LA(1)
-                if _la==4:
-                    self.state = 24
-                    self.match(QueryParser.NOT)
-
-
-                self.state = 27
                 self.boolProperty()
                 pass
 
@@ -229,7 +257,7 @@ class QueryParser ( Parser ):
         return localctx
 
 
-    class NumEntityExprContext(ParserRuleContext):
+    class NumEntityPropertyContext(ParserRuleContext):
         __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
@@ -244,28 +272,26 @@ class QueryParser ( Parser ):
 
 
         def getRuleIndex(self):
-            return QueryParser.RULE_numEntityExpr
+            return QueryParser.RULE_numEntityProperty
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterNumEntityExpr" ):
-                listener.enterNumEntityExpr(self)
-
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitNumEntityExpr" ):
-                listener.exitNumEntityExpr(self)
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitNumEntityProperty" ):
+                return visitor.visitNumEntityProperty(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
 
-    def numEntityExpr(self):
+    def numEntityProperty(self):
 
-        localctx = QueryParser.NumEntityExprContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 4, self.RULE_numEntityExpr)
+        localctx = QueryParser.NumEntityPropertyContext(self, self._ctx, self.state)
+        self.enterRule(localctx, 4, self.RULE_numEntityProperty)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 30
+            self.state = 28
             self.match(QueryParser.INTEGER)
-            self.state = 31
+            self.state = 29
             self.entity()
         except RecognitionException as re:
             localctx.exception = re
@@ -298,13 +324,11 @@ class QueryParser ( Parser ):
         def getRuleIndex(self):
             return QueryParser.RULE_entity
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterEntity" ):
-                listener.enterEntity(self)
-
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitEntity" ):
-                listener.exitEntity(self)
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitEntity" ):
+                return visitor.visitEntity(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -316,7 +340,7 @@ class QueryParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 33
+            self.state = 31
             _la = self._input.LA(1)
             if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 480) != 0)):
                 self._errHandler.recoverInline(self)
@@ -369,13 +393,11 @@ class QueryParser ( Parser ):
         def getRuleIndex(self):
             return QueryParser.RULE_boolProperty
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterBoolProperty" ):
-                listener.enterBoolProperty(self)
-
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitBoolProperty" ):
-                listener.exitBoolProperty(self)
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitBoolProperty" ):
+                return visitor.visitBoolProperty(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -387,7 +409,7 @@ class QueryParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 35
+            self.state = 33
             _la = self._input.LA(1)
             if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 261632) != 0)):
                 self._errHandler.recoverInline(self)
