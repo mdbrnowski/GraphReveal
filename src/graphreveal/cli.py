@@ -12,6 +12,17 @@ from graphreveal.translator import translate
 app = typer.Typer(no_args_is_help=True)
 
 
+def _print_parsing_error(query: str, e: ParsingError):
+    query += " "
+    rich.print(f"[bold red]Query error:\n")
+    rich.print(
+        f"  [not bold cyan]{query[:e.error_column]}"
+        f"[bold red]{query[e.error_column:e.error_column + e.error_length]}"
+        f"[not bold cyan]{query[e.error_column + e.error_length:]}"
+    )
+    rich.print(f"  {' ' * e.error_column}[red]{'^' * e.error_length}\n")
+
+
 @app.command()
 def search(query: str, count: bool = False):
     """
@@ -24,7 +35,7 @@ def search(query: str, count: bool = False):
         else:
             print("\n".join(get_ids(sql_query)))
     except ParsingError as e:
-        rich.print("[bold red]Error:", str(e) + ".")
+        _print_parsing_error(query, e)
     except OperationalError as e:
         rich.print("[bold red]Error:", str(e) + ".")
         rich.print(
@@ -59,7 +70,7 @@ def to_sql(query: str):
         sql_query = translate(query)
         print(sql_query)
     except ParsingError as e:
-        rich.print("[bold red]Error:", str(e) + ".")
+        _print_parsing_error(query, e)
 
 
 if __name__ == "__main__":

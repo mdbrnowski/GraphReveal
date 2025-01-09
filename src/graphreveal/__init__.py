@@ -6,7 +6,11 @@ DATABASE_PATH = os.path.join(PKG_PATH, "graphs.db")
 
 
 class ParsingError(Exception):
-    pass
+    def __init__(
+        self, message: str, error_coordinates: tuple[int, int, int] | None = None
+    ):
+        self.message = message
+        self.error_line, self.error_column, self.error_length = error_coordinates
 
 
 def get_ids(sql_query: str) -> list[str]:
