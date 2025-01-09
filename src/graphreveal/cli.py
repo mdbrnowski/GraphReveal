@@ -13,14 +13,19 @@ app = typer.Typer(no_args_is_help=True)
 
 
 def _print_parsing_error(query: str, e: ParsingError):
-    query += " "
     rich.print(f"[bold red]Query error:\n")
-    rich.print(
-        f"  [not bold cyan]{query[:e.error_column]}"
-        f"[bold red]{query[e.error_column:e.error_column + e.error_length]}"
-        f"[not bold cyan]{query[e.error_column + e.error_length:]}"
-    )
-    rich.print(f"  {' ' * e.error_column}[red]{'^' * e.error_length}\n")
+    for i, query_line in enumerate(query.split("\n"), start=1):
+        query_line += " "
+        if i == e.error_line:
+            rich.print(
+                f"  [not bold cyan]{query_line[:e.error_column]}"
+                f"[bold red]{query_line[e.error_column:e.error_column + e.error_length]}"
+                f"[not bold cyan]{query_line[e.error_column + e.error_length:]}"
+            )
+            rich.print(f"  {' ' * e.error_column}[red]{'^' * e.error_length}")
+        else:
+            rich.print(f"  [not bold cyan]{query_line}\n")
+    rich.print()
 
 
 @app.command()
