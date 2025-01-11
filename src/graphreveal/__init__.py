@@ -1,8 +1,11 @@
 import os
 import sqlite3
 
-PKG_PATH = os.path.dirname(os.path.dirname(__file__))
-DATABASE_PATH = os.path.join(PKG_PATH, "graphs.db")
+from platformdirs import user_data_dir
+
+DATABASE_PATH = os.path.join(
+    user_data_dir(appname="graphreveal", appauthor="graphreveal"), "graphs.db"
+)
 
 
 class ParsingError(Exception):
