@@ -1,4 +1,5 @@
 import importlib.resources
+import os
 import sqlite3
 
 import networkx as nx
@@ -9,6 +10,7 @@ from . import util
 
 
 def create_db(max_n):
+    os.makedirs(os.path.dirname(DATABASE_PATH), exist_ok=True)
     con = sqlite3.connect(DATABASE_PATH)
     cur = con.cursor()
 
