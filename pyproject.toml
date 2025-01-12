@@ -1,5 +1,5 @@
 [project]
-name = "GraphReveal"
+name = "graphreveal"
 version = "0.1.0"
 description = "Small graphs database and search system"
 readme = "README.md"
