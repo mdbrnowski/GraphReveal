@@ -10,10 +10,10 @@ else:
 
 def serializedATN():
     return [
-        4,1,17,36,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,1,0,1,0,1,0,5,
+        4,1,19,36,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,1,0,1,0,1,0,5,
         0,14,8,0,10,0,12,0,17,9,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,3,1,27,
         8,1,1,2,1,2,1,2,1,3,1,3,1,4,1,4,1,4,0,0,5,0,2,4,6,8,0,2,1,0,5,8,
-        1,0,9,17,34,0,10,1,0,0,0,2,26,1,0,0,0,4,28,1,0,0,0,6,31,1,0,0,0,
+        1,0,9,19,34,0,10,1,0,0,0,2,26,1,0,0,0,4,28,1,0,0,0,6,31,1,0,0,0,
         8,33,1,0,0,0,10,15,3,2,1,0,11,12,5,3,0,0,12,14,3,2,1,0,13,11,1,0,
         0,0,14,17,1,0,0,0,15,13,1,0,0,0,15,16,1,0,0,0,16,18,1,0,0,0,17,15,
         1,0,0,0,18,19,5,0,0,1,19,1,1,0,0,0,20,27,3,4,2,0,21,27,3,8,4,0,22,
@@ -37,12 +37,13 @@ class QueryParser ( Parser ):
                      "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
                      "<INVALID>", "<INVALID>", "'bipartite'", "'complete'", 
                      "'connected'", "<INVALID>", "<INVALID>", "<INVALID>", 
-                     "'planar'", "'tree'" ]
+                     "<INVALID>", "'planar'", "'regular'", "'tree'" ]
 
     symbolicNames = [ "<INVALID>", "WHITESPACE", "INTEGER", "SEPERATOR", 
                       "NOT", "VERTEX", "EDGE", "BLOCK", "COMPONENT", "ACYCLIC", 
-                      "BIPARTITE", "COMPLETE", "CONNECTED", "EULERIAN", 
-                      "HAMILTONIAN", "NO_ISOLATED_V", "PLANAR", "TREE" ]
+                      "BIPARTITE", "COMPLETE", "CONNECTED", "CUBIC", "EULERIAN", 
+                      "HAMILTONIAN", "NO_ISOLATED_V", "PLANAR", "REGULAR", 
+                      "TREE" ]
 
     RULE_query = 0
     RULE_expr = 1
@@ -65,11 +66,13 @@ class QueryParser ( Parser ):
     BIPARTITE=10
     COMPLETE=11
     CONNECTED=12
-    EULERIAN=13
-    HAMILTONIAN=14
-    NO_ISOLATED_V=15
-    PLANAR=16
-    TREE=17
+    CUBIC=13
+    EULERIAN=14
+    HAMILTONIAN=15
+    NO_ISOLATED_V=16
+    PLANAR=17
+    REGULAR=18
+    TREE=19
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
@@ -375,6 +378,9 @@ class QueryParser ( Parser ):
         def CONNECTED(self):
             return self.getToken(QueryParser.CONNECTED, 0)
 
+        def CUBIC(self):
+            return self.getToken(QueryParser.CUBIC, 0)
+
         def EULERIAN(self):
             return self.getToken(QueryParser.EULERIAN, 0)
 
@@ -386,6 +392,9 @@ class QueryParser ( Parser ):
 
         def PLANAR(self):
             return self.getToken(QueryParser.PLANAR, 0)
+
+        def REGULAR(self):
+            return self.getToken(QueryParser.REGULAR, 0)
 
         def TREE(self):
             return self.getToken(QueryParser.TREE, 0)
@@ -411,7 +420,7 @@ class QueryParser ( Parser ):
             self.enterOuterAlt(localctx, 1)
             self.state = 33
             _la = self._input.LA(1)
-            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 261632) != 0)):
+            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 1048064) != 0)):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)

@@ -47,10 +47,12 @@ Without `--count`, this command will print a list of graphs in [graph6](https://
 * `bipartite`
 * `complete`
 * `connected`
+* `cubic` (alternative: `trivalent`)
 * `eulerian` (alternative: `euler`)
 * `hamiltonian` (alternative: `hamilton`)
 * `no isolated vertices` (alternatives: `no isolated v`, `niv`)
 * `planar`
+* `regular`
 * `tree`
 
 You can also negate these properties using `!` or `not`.

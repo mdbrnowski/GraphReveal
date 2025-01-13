@@ -35,9 +35,11 @@ boolProperty
     | BIPARTITE
     | COMPLETE
     | CONNECTED
+    | CUBIC
     | EULERIAN
     | HAMILTONIAN
     | NO_ISOLATED_V
     | PLANAR
+    | REGULAR
     | TREE
     ;

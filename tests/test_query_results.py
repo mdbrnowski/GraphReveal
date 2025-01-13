@@ -30,6 +30,10 @@ from graphreveal.translator import translate
         ("7 vertices, hamiltonian", 383),
         ("5 vertices, connected, 2 blocks", 5),
         ("5 vertices, connected, 1 block", 10),
+        ("4 vertices, cubic", 1),
+        ("5 vertices, cubic", 0),
+        ("6 vertices, trivalent", 2),
+        ("4 vertices, connected, regular", 2),
     ],
 )
 def test_query_results(query, expected_count):
