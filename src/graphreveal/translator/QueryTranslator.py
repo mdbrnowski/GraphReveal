@@ -5,10 +5,12 @@ BOOL_PROPERTY_MAP = {
     QueryParser.BIPARTITE: "bipartite = TRUE",
     QueryParser.COMPLETE: "vertices * (vertices - 1) / 2 = edges",
     QueryParser.CONNECTED: "components = 1",
+    QueryParser.CUBIC: "degree_min = 3 AND degree_max = 3",
     QueryParser.EULERIAN: "eulerian = TRUE",
     QueryParser.HAMILTONIAN: "hamiltonian = TRUE",
     QueryParser.NO_ISOLATED_V: "degree_min > 0",
     QueryParser.PLANAR: "planar = TRUE",
+    QueryParser.REGULAR: "degree_max = degree_min",
     QueryParser.TREE: "acyclic = TRUE AND components = 1",
 }
 
