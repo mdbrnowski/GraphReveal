@@ -1,5 +1,6 @@
 # GraphReveal
 
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/graphreveal)](https://pypi.org/project/graphreveal/)
 [![PyPI - Version](https://img.shields.io/pypi/v/graphreveal)](https://pypi.org/project/graphreveal/)
 [![Test](https://github.com/mdbrnowski/GraphReveal/actions/workflows/test.yml/badge.svg)](https://github.com/mdbrnowski/GraphReveal/actions/workflows/test.yml)
 
