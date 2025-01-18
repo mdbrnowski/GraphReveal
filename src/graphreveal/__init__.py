@@ -3,6 +3,8 @@ import sqlite3
 
 from platformdirs import user_data_dir
 
+__version__ = "0.2.1"
+
 DATABASE_PATH = os.path.join(
     user_data_dir(appname="graphreveal", appauthor="graphreveal"), "graphs.db"
 )

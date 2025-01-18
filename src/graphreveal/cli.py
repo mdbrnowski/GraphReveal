@@ -5,11 +5,11 @@ import rich
 import typer
 from rich.prompt import Confirm
 
-from graphreveal import get_ids, ParsingError, DATABASE_PATH
+from graphreveal import __version__, get_ids, ParsingError, DATABASE_PATH
 from graphreveal.db_creator import create_db
 from graphreveal.translator import translate
 
-app = typer.Typer(no_args_is_help=True)
+app = typer.Typer(no_args_is_help=True, help=f"GraphReveal v{__version__}")
 
 
 def _print_parsing_error(query: str, e: ParsingError):
