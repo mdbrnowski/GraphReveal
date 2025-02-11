@@ -19,6 +19,7 @@ from graphreveal.translator import translate
         ("7 vertices, eulerian", 37),
         ("5 vertices, connected, planar", 20),
         ("5 vertices, tree", 3),
+        ("3 vertices, not tree", 3),
         ("5 vertices, 2 components", 8),
         ("3 edges, no isolated vertices", 5),
         ("1 vertex, hamiltonian", 1),
