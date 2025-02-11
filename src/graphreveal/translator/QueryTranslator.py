@@ -32,7 +32,7 @@ class QueryTranslator(QueryParserVisitor):
         return self.visitChildren(ctx)
 
     def visitNotExpr(self, ctx: QueryParser.NotExprContext):
-        return "NOT " + self.visitChildren(ctx)
+        return "NOT (" + self.visitChildren(ctx) + ")"
 
     def visitNumEntityProperty(self, ctx: QueryParser.NumEntityPropertyContext):
         num = ctx.INTEGER().getText()
