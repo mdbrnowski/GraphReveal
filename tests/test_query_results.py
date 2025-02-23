@@ -35,6 +35,12 @@ from graphreveal.translator import translate
         ("5 vertices, cubic", 0),
         ("6 vertices, trivalent", 2),
         ("4 vertices, connected, regular", 2),
+        ("2..4 vertices, connected", 1 + 2 + 6),
+        ("<=4 vertices, connected", 1 + 1 + 2 + 6),
+        ("1-3 edges, no isolated vertices", 1 + 2 + 5),
+        ("4 vertices, >2 components", 2),
+        ("3 vertices, >=2 components", 2),
+        ("4 vertices, connected, <3 blocks, >1 block", 1),
     ],
 )
 def test_query_results(query, expected_count):

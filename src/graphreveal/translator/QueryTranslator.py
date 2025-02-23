@@ -39,6 +39,23 @@ class QueryTranslator(QueryParserVisitor):
         entity = self.visit(ctx.entity())
         return NUM_ENTITY_PROPERTY_MAP[entity] + " = " + num
 
+    def visitHalfOpenRange(self, ctx: QueryParser.HalfOpenRangeContext):
+        num = ctx.INTEGER().getText()
+        entity = self.visit(ctx.entity())
+        operator = {
+            QueryParser.LESS: "<",
+            QueryParser.GREATER: ">",
+            QueryParser.LESS_OR_EQUAL: "<=",
+            QueryParser.GREATER_OR_EQUAL: ">=",
+        }[ctx.op.type]
+        return NUM_ENTITY_PROPERTY_MAP[entity] + f" {operator} {num}"
+
+    def visitClosedRange(self, ctx: QueryParser.ClosedRangeContext):
+        num_1 = ctx.INTEGER(0).getText()
+        num_2 = ctx.INTEGER(1).getText()
+        entity = self.visit(ctx.entity())
+        return NUM_ENTITY_PROPERTY_MAP[entity] + " BETWEEN " + num_1 + " AND " + num_2
+
     def visitEntity(self, ctx: QueryParser.EntityContext):
         return ctx.getChild(0).symbol.type
 
