@@ -29,6 +29,16 @@ class QueryParserVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by QueryParser#halfOpenRange.
+    def visitHalfOpenRange(self, ctx:QueryParser.HalfOpenRangeContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by QueryParser#closedRange.
+    def visitClosedRange(self, ctx:QueryParser.ClosedRangeContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by QueryParser#entity.
     def visitEntity(self, ctx:QueryParser.EntityContext):
         return self.visitChildren(ctx)

@@ -33,17 +33,17 @@ graphreveal search "10 edges, bipartite, no isolated vertices, 2 components"
 ```
 
 ```shell
-graphreveal search --count "6 vertices, connected"
+graphreveal search --count "5..6 vertices, connected"
 ```
 
 Without `--count`, this command will print a list of graphs in [graph6](https://users.cecs.anu.edu.au/~bdm/data/formats.html) format. You can use [houseofgraphs.org](https://houseofgraphs.org/draw_graph) to visualize them.
 
 ### List of available properties
 
-* [int] `vertices` (alternatives: `verts`,`V`, `nodes`)
-* [int] `edges` (alternative: `E`)
-* [int] `blocks` (alternative: `biconnected components`)
-* [int] `components` (alternative: `C`)
+* [N] `vertices` (alternatives: `verts`,`V`, `nodes`)
+* [N] `edges` (alternative: `E`)
+* [N] `blocks` (alternative: `biconnected components`)
+* [N] `components` (alternative: `C`)
 * `acyclic` (alternative: `forest`)
 * `bipartite`
 * `complete`
@@ -56,4 +56,5 @@ Without `--count`, this command will print a list of graphs in [graph6](https://
 * `regular`
 * `tree`
 
-You can also negate these properties using `!` or `not`.
+As [N], you can use a simple number or range (e.g., `3-4`, `3..4`, `< 5`, `>= 2`).
+You can also negate any property using `!` or `not`.

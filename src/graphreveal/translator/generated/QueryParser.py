@@ -10,17 +10,23 @@ else:
 
 def serializedATN():
     return [
-        4,1,19,36,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,1,0,1,0,1,0,5,
+        4,1,24,53,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,1,0,1,0,1,0,5,
         0,14,8,0,10,0,12,0,17,9,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,3,1,27,
-        8,1,1,2,1,2,1,2,1,3,1,3,1,4,1,4,1,4,0,0,5,0,2,4,6,8,0,2,1,0,5,8,
-        1,0,9,19,34,0,10,1,0,0,0,2,26,1,0,0,0,4,28,1,0,0,0,6,31,1,0,0,0,
-        8,33,1,0,0,0,10,15,3,2,1,0,11,12,5,3,0,0,12,14,3,2,1,0,13,11,1,0,
-        0,0,14,17,1,0,0,0,15,13,1,0,0,0,15,16,1,0,0,0,16,18,1,0,0,0,17,15,
-        1,0,0,0,18,19,5,0,0,1,19,1,1,0,0,0,20,27,3,4,2,0,21,27,3,8,4,0,22,
-        23,5,4,0,0,23,27,3,4,2,0,24,25,5,4,0,0,25,27,3,8,4,0,26,20,1,0,0,
-        0,26,21,1,0,0,0,26,22,1,0,0,0,26,24,1,0,0,0,27,3,1,0,0,0,28,29,5,
-        2,0,0,29,30,3,6,3,0,30,5,1,0,0,0,31,32,7,0,0,0,32,7,1,0,0,0,33,34,
-        7,1,0,0,34,9,1,0,0,0,2,15,26
+        8,1,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,
+        1,2,1,2,1,2,3,2,47,8,2,1,3,1,3,1,4,1,4,1,4,0,0,5,0,2,4,6,8,0,2,1,
+        0,10,13,1,0,14,24,56,0,10,1,0,0,0,2,26,1,0,0,0,4,46,1,0,0,0,6,48,
+        1,0,0,0,8,50,1,0,0,0,10,15,3,2,1,0,11,12,5,3,0,0,12,14,3,2,1,0,13,
+        11,1,0,0,0,14,17,1,0,0,0,15,13,1,0,0,0,15,16,1,0,0,0,16,18,1,0,0,
+        0,17,15,1,0,0,0,18,19,5,0,0,1,19,1,1,0,0,0,20,27,3,4,2,0,21,27,3,
+        8,4,0,22,23,5,4,0,0,23,27,3,4,2,0,24,25,5,4,0,0,25,27,3,8,4,0,26,
+        20,1,0,0,0,26,21,1,0,0,0,26,22,1,0,0,0,26,24,1,0,0,0,27,3,1,0,0,
+        0,28,29,5,2,0,0,29,47,3,6,3,0,30,31,5,5,0,0,31,32,5,2,0,0,32,47,
+        3,6,3,0,33,34,5,6,0,0,34,35,5,2,0,0,35,47,3,6,3,0,36,37,5,7,0,0,
+        37,38,5,2,0,0,38,47,3,6,3,0,39,40,5,8,0,0,40,41,5,2,0,0,41,47,3,
+        6,3,0,42,43,5,2,0,0,43,44,5,9,0,0,44,45,5,2,0,0,45,47,3,6,3,0,46,
+        28,1,0,0,0,46,30,1,0,0,0,46,33,1,0,0,0,46,36,1,0,0,0,46,39,1,0,0,
+        0,46,42,1,0,0,0,47,5,1,0,0,0,48,49,7,0,0,0,49,7,1,0,0,0,50,51,7,
+        1,0,0,51,9,1,0,0,0,3,15,26,46
     ]
 
 class QueryParser ( Parser ):
@@ -34,45 +40,52 @@ class QueryParser ( Parser ):
     sharedContextCache = PredictionContextCache()
 
     literalNames = [ "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
+                     "<INVALID>", "'<'", "'>'", "'<='", "'>='", "<INVALID>", 
                      "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
-                     "<INVALID>", "<INVALID>", "'bipartite'", "'complete'", 
-                     "'connected'", "<INVALID>", "<INVALID>", "<INVALID>", 
-                     "<INVALID>", "'planar'", "'regular'", "'tree'" ]
+                     "<INVALID>", "'bipartite'", "'complete'", "'connected'", 
+                     "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
+                     "'planar'", "'regular'", "'tree'" ]
 
     symbolicNames = [ "<INVALID>", "WHITESPACE", "INTEGER", "SEPERATOR", 
-                      "NOT", "VERTEX", "EDGE", "BLOCK", "COMPONENT", "ACYCLIC", 
-                      "BIPARTITE", "COMPLETE", "CONNECTED", "CUBIC", "EULERIAN", 
-                      "HAMILTONIAN", "NO_ISOLATED_V", "PLANAR", "REGULAR", 
-                      "TREE" ]
+                      "NOT", "LESS", "GREATER", "LESS_OR_EQUAL", "GREATER_OR_EQUAL", 
+                      "RANGE_OPERATOR", "VERTEX", "EDGE", "BLOCK", "COMPONENT", 
+                      "ACYCLIC", "BIPARTITE", "COMPLETE", "CONNECTED", "CUBIC", 
+                      "EULERIAN", "HAMILTONIAN", "NO_ISOLATED_V", "PLANAR", 
+                      "REGULAR", "TREE" ]
 
     RULE_query = 0
     RULE_expr = 1
-    RULE_numEntityProperty = 2
+    RULE_entityProperty = 2
     RULE_entity = 3
     RULE_boolProperty = 4
 
-    ruleNames =  [ "query", "expr", "numEntityProperty", "entity", "boolProperty" ]
+    ruleNames =  [ "query", "expr", "entityProperty", "entity", "boolProperty" ]
 
     EOF = Token.EOF
     WHITESPACE=1
     INTEGER=2
     SEPERATOR=3
     NOT=4
-    VERTEX=5
-    EDGE=6
-    BLOCK=7
-    COMPONENT=8
-    ACYCLIC=9
-    BIPARTITE=10
-    COMPLETE=11
-    CONNECTED=12
-    CUBIC=13
-    EULERIAN=14
-    HAMILTONIAN=15
-    NO_ISOLATED_V=16
-    PLANAR=17
-    REGULAR=18
-    TREE=19
+    LESS=5
+    GREATER=6
+    LESS_OR_EQUAL=7
+    GREATER_OR_EQUAL=8
+    RANGE_OPERATOR=9
+    VERTEX=10
+    EDGE=11
+    BLOCK=12
+    COMPONENT=13
+    ACYCLIC=14
+    BIPARTITE=15
+    COMPLETE=16
+    CONNECTED=17
+    CUBIC=18
+    EULERIAN=19
+    HAMILTONIAN=20
+    NO_ISOLATED_V=21
+    PLANAR=22
+    REGULAR=23
+    TREE=24
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
@@ -173,8 +186,8 @@ class QueryParser ( Parser ):
             super().__init__(parser)
             self.copyFrom(ctx)
 
-        def numEntityProperty(self):
-            return self.getTypedRuleContext(QueryParser.NumEntityPropertyContext,0)
+        def entityProperty(self):
+            return self.getTypedRuleContext(QueryParser.EntityPropertyContext,0)
 
         def boolProperty(self):
             return self.getTypedRuleContext(QueryParser.BoolPropertyContext,0)
@@ -195,8 +208,8 @@ class QueryParser ( Parser ):
 
         def NOT(self):
             return self.getToken(QueryParser.NOT, 0)
-        def numEntityProperty(self):
-            return self.getTypedRuleContext(QueryParser.NumEntityPropertyContext,0)
+        def entityProperty(self):
+            return self.getTypedRuleContext(QueryParser.EntityPropertyContext,0)
 
         def boolProperty(self):
             return self.getTypedRuleContext(QueryParser.BoolPropertyContext,0)
@@ -222,7 +235,7 @@ class QueryParser ( Parser ):
                 localctx = QueryParser.SimpleExprContext(self, localctx)
                 self.enterOuterAlt(localctx, 1)
                 self.state = 20
-                self.numEntityProperty()
+                self.entityProperty()
                 pass
 
             elif la_ == 2:
@@ -238,7 +251,7 @@ class QueryParser ( Parser ):
                 self.state = 22
                 self.match(QueryParser.NOT)
                 self.state = 23
-                self.numEntityProperty()
+                self.entityProperty()
                 pass
 
             elif la_ == 4:
@@ -260,22 +273,34 @@ class QueryParser ( Parser ):
         return localctx
 
 
-    class NumEntityPropertyContext(ParserRuleContext):
+    class EntityPropertyContext(ParserRuleContext):
         __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
+
+        def getRuleIndex(self):
+            return QueryParser.RULE_entityProperty
+
+     
+        def copyFrom(self, ctx:ParserRuleContext):
+            super().copyFrom(ctx)
+
+
+
+    class NumEntityPropertyContext(EntityPropertyContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a QueryParser.EntityPropertyContext
+            super().__init__(parser)
+            self.copyFrom(ctx)
+
         def INTEGER(self):
             return self.getToken(QueryParser.INTEGER, 0)
-
         def entity(self):
             return self.getTypedRuleContext(QueryParser.EntityContext,0)
 
-
-        def getRuleIndex(self):
-            return QueryParser.RULE_numEntityProperty
 
         def accept(self, visitor:ParseTreeVisitor):
             if hasattr( visitor, "visitNumEntityProperty" ):
@@ -284,18 +309,134 @@ class QueryParser ( Parser ):
                 return visitor.visitChildren(self)
 
 
+    class HalfOpenRangeContext(EntityPropertyContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a QueryParser.EntityPropertyContext
+            super().__init__(parser)
+            self.op = None # Token
+            self.copyFrom(ctx)
+
+        def INTEGER(self):
+            return self.getToken(QueryParser.INTEGER, 0)
+        def entity(self):
+            return self.getTypedRuleContext(QueryParser.EntityContext,0)
+
+        def LESS(self):
+            return self.getToken(QueryParser.LESS, 0)
+        def GREATER(self):
+            return self.getToken(QueryParser.GREATER, 0)
+        def LESS_OR_EQUAL(self):
+            return self.getToken(QueryParser.LESS_OR_EQUAL, 0)
+        def GREATER_OR_EQUAL(self):
+            return self.getToken(QueryParser.GREATER_OR_EQUAL, 0)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitHalfOpenRange" ):
+                return visitor.visitHalfOpenRange(self)
+            else:
+                return visitor.visitChildren(self)
 
 
-    def numEntityProperty(self):
+    class ClosedRangeContext(EntityPropertyContext):
 
-        localctx = QueryParser.NumEntityPropertyContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 4, self.RULE_numEntityProperty)
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a QueryParser.EntityPropertyContext
+            super().__init__(parser)
+            self.copyFrom(ctx)
+
+        def INTEGER(self, i:int=None):
+            if i is None:
+                return self.getTokens(QueryParser.INTEGER)
+            else:
+                return self.getToken(QueryParser.INTEGER, i)
+        def RANGE_OPERATOR(self):
+            return self.getToken(QueryParser.RANGE_OPERATOR, 0)
+        def entity(self):
+            return self.getTypedRuleContext(QueryParser.EntityContext,0)
+
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitClosedRange" ):
+                return visitor.visitClosedRange(self)
+            else:
+                return visitor.visitChildren(self)
+
+
+
+    def entityProperty(self):
+
+        localctx = QueryParser.EntityPropertyContext(self, self._ctx, self.state)
+        self.enterRule(localctx, 4, self.RULE_entityProperty)
         try:
-            self.enterOuterAlt(localctx, 1)
-            self.state = 28
-            self.match(QueryParser.INTEGER)
-            self.state = 29
-            self.entity()
+            self.state = 46
+            self._errHandler.sync(self)
+            la_ = self._interp.adaptivePredict(self._input,2,self._ctx)
+            if la_ == 1:
+                localctx = QueryParser.NumEntityPropertyContext(self, localctx)
+                self.enterOuterAlt(localctx, 1)
+                self.state = 28
+                self.match(QueryParser.INTEGER)
+                self.state = 29
+                self.entity()
+                pass
+
+            elif la_ == 2:
+                localctx = QueryParser.HalfOpenRangeContext(self, localctx)
+                self.enterOuterAlt(localctx, 2)
+                self.state = 30
+                localctx.op = self.match(QueryParser.LESS)
+                self.state = 31
+                self.match(QueryParser.INTEGER)
+                self.state = 32
+                self.entity()
+                pass
+
+            elif la_ == 3:
+                localctx = QueryParser.HalfOpenRangeContext(self, localctx)
+                self.enterOuterAlt(localctx, 3)
+                self.state = 33
+                localctx.op = self.match(QueryParser.GREATER)
+                self.state = 34
+                self.match(QueryParser.INTEGER)
+                self.state = 35
+                self.entity()
+                pass
+
+            elif la_ == 4:
+                localctx = QueryParser.HalfOpenRangeContext(self, localctx)
+                self.enterOuterAlt(localctx, 4)
+                self.state = 36
+                localctx.op = self.match(QueryParser.LESS_OR_EQUAL)
+                self.state = 37
+                self.match(QueryParser.INTEGER)
+                self.state = 38
+                self.entity()
+                pass
+
+            elif la_ == 5:
+                localctx = QueryParser.HalfOpenRangeContext(self, localctx)
+                self.enterOuterAlt(localctx, 5)
+                self.state = 39
+                localctx.op = self.match(QueryParser.GREATER_OR_EQUAL)
+                self.state = 40
+                self.match(QueryParser.INTEGER)
+                self.state = 41
+                self.entity()
+                pass
+
+            elif la_ == 6:
+                localctx = QueryParser.ClosedRangeContext(self, localctx)
+                self.enterOuterAlt(localctx, 6)
+                self.state = 42
+                self.match(QueryParser.INTEGER)
+                self.state = 43
+                self.match(QueryParser.RANGE_OPERATOR)
+                self.state = 44
+                self.match(QueryParser.INTEGER)
+                self.state = 45
+                self.entity()
+                pass
+
+
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -343,9 +484,9 @@ class QueryParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 31
+            self.state = 48
             _la = self._input.LA(1)
-            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 480) != 0)):
+            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 15360) != 0)):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)
@@ -418,9 +559,9 @@ class QueryParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 33
+            self.state = 50
             _la = self._input.LA(1)
-            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 1048064) != 0)):
+            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 33538048) != 0)):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)

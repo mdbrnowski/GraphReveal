@@ -13,6 +13,12 @@ SEPERATOR: ',' | ';';
 
 NOT: 'not' | '!';
 
+LESS             : '<';
+GREATER          : '>';
+LESS_OR_EQUAL    : '<=';
+GREATER_OR_EQUAL : '>=';
+RANGE_OPERATOR   : '..' | '-';
+
 VERTEX : 'vertex' | 'vertices' | 'vertexes' | 'verts' | 'V' | 'node' | 'nodes';
 EDGE   : 'edge' | 'edges' | 'E';
 BLOCK:

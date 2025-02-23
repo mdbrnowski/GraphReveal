@@ -20,6 +20,10 @@ from graphreveal.translator import QueryLexer, QueryParser
         "not 2 vertices, 1 edge",
         "forest; tree; no isolated vertices",
         "2 biconnected components, 2 blocks",
+        "3..5 vertices, >6 edges",
+        "<6 vertices, 7-9 edges",
+        "<=5 vertices, 7..9 edges",
+        "<=2 vertices, >=11 edges",
     ],
 )
 def test_valid_query(valid_query):
@@ -46,6 +50,9 @@ def test_valid_query(valid_query):
         "6 V 8 E",
         "isolated vertices",
         "biconnected component component",
+        "5 vertices, 8 eulerian",
+        "6 vertices, < edges",
+        "5 vertices, .. edges,",
     ],
 )
 def test_invalid_query(invalid_query):

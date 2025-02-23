@@ -13,14 +13,19 @@ query
     ;
 
 expr
-    : numEntityProperty     # simpleExpr
-    | boolProperty          # simpleExpr
-    | NOT numEntityProperty # notExpr
-    | NOT boolProperty      # notExpr
+    : entityProperty     # simpleExpr
+    | boolProperty       # simpleExpr
+    | NOT entityProperty # notExpr
+    | NOT boolProperty   # notExpr
     ;
 
-numEntityProperty
-    : INTEGER entity
+entityProperty
+    : INTEGER entity                        # numEntityProperty
+    | op = LESS INTEGER entity              # halfOpenRange
+    | op = GREATER INTEGER entity           # halfOpenRange
+    | op = LESS_OR_EQUAL INTEGER entity     # halfOpenRange
+    | op = GREATER_OR_EQUAL INTEGER entity  # halfOpenRange
+    | INTEGER RANGE_OPERATOR INTEGER entity # closedRange
     ;
 
 entity
