@@ -12,10 +12,13 @@ DATABASE_PATH = os.path.join(
 
 class ParsingError(Exception):
     def __init__(self, message: str, errors_coordinates: list[tuple[int, int, int]]):
-        # todo: show all errors, not just the first one
-        error_coordinates = errors_coordinates[0]
+        print(errors_coordinates)
         self.message = message
-        self.error_line, self.error_column, self.error_length = error_coordinates
+        self.errors_coordinates = set()
+        for line, column, length in errors_coordinates:
+            for i in range(length):
+                self.errors_coordinates.add((line - 1, column + i))
+        print(self.errors_coordinates)
 
 
 def get_ids(sql_query: str) -> list[str]:

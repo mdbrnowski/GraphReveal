@@ -14,17 +14,22 @@ app = typer.Typer(no_args_is_help=True, help=f"GraphReveal v{__version__}")
 
 def _print_parsing_error(query: str, e: ParsingError):
     rich.print("[bold red]Query error:\n")
-    for i, query_line in enumerate(query.split("\n"), start=1):
+    for i, query_line in enumerate(query.split("\n")):
         query_line += " "
-        if i == e.error_line:
-            rich.print(
-                f"  [not bold cyan]{query_line[: e.error_column]}"
-                f"[bold red]{query_line[e.error_column : e.error_column + e.error_length]}"
-                f"[not bold cyan]{query_line[e.error_column + e.error_length :]}"
-            )
-            rich.print(f"  {' ' * e.error_column}[red]{'^' * e.error_length}")
-        else:
-            rich.print(f"  [not bold cyan]{query_line}\n")
+        rich.print("  ", end="")
+        for j, char in enumerate(query_line):
+            if (i, j) in e.errors_coordinates:
+                rich.print(f"[bold red]{char}", end="")
+            else:
+                rich.print(f"[not bold cyan]{char}", end="")
+        rich.print()
+        rich.print("  ", end="")
+        for j, char in enumerate(query_line):
+            if (i, j) in e.errors_coordinates:
+                rich.print(f"[bold red]^", end="")
+            else:
+                rich.print("[not bold cyan] ", end="")
+        rich.print()
     rich.print()
 
 
