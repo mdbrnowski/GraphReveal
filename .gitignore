@@ -1,12 +1,17 @@
-.idea/*
-
-__pycache__/
-*.egg-info
-
-uv.lock
+.idea/
+.vscode/
 
 graphs.db
 
+# Python
+.venv/
+__pycache__/
+dist/
+.pytest_cache/
+.ruff_cache/
+uv.lock
+
+# ANTLR
 .antlr/
 *.interp
 *.tokens
