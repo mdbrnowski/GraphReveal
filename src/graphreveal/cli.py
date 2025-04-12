@@ -26,7 +26,7 @@ def _print_parsing_error(query: str, e: ParsingError):
         rich.print("  ", end="")
         for j, char in enumerate(query_line):
             if (i, j) in e.errors_coordinates:
-                rich.print(f"[bold red]^", end="")
+                rich.print("[bold red]^", end="")
             else:
                 rich.print("[not bold cyan] ", end="")
         rich.print()
