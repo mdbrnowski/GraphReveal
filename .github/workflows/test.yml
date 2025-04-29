@@ -22,18 +22,18 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
-      - name: Install uv
-        uses: astral-sh/setup-uv@v5
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
-          enable-cache: true
-          cache-dependency-glob: "**/pyproject.toml"
       - name: Install the package
         run: |
-          uv venv
-          uv pip install .
+          python -m pip install --upgrade pip
+          pip install .
       - name: Create the database
         run: |
           graphreveal create-database
       - name: Run tests
-        run: uv run pytest
+        run: |
+          pip install pytest
+          pytest
