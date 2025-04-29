@@ -11,12 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Install uv
-        uses: astral-sh/setup-uv@v5
-      - name: Run Ruff
-        run: uvx ruff check --output-format=github
-      - name: Run Ruff formatter
-        run: uvx ruff format --check
+      - uses: astral-sh/ruff-action@v3
+      - run: ruff format --check
 
   test:
     strategy:
