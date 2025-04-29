@@ -30,6 +30,7 @@ jobs:
           cache-dependency-glob: "**/pyproject.toml"
       - name: Install the package
         run: |
+          uv venv
           uv pip install .
       - name: Create the database
         run: |
