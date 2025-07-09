@@ -24,6 +24,7 @@ classifiers = [
     "Operating System :: Microsoft :: Windows",
     "Operating System :: POSIX :: Linux",
     "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
@@ -34,7 +35,6 @@ classifiers = [
 
 [project.urls]
 Changelog = "https://github.com/mdbrnowski/GraphReveal/releases"
-Homepage = "https://github.com/mdbrnowski/GraphReveal"
 Source = "https://github.com/mdbrnowski/GraphReveal"
 
 [project.scripts]
