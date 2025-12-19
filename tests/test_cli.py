@@ -4,19 +4,19 @@ from graphreveal.cli import app
 runner = CliRunner()
 
 
-def test_app():
+def test_app_search():
     result = runner.invoke(app, ["search", "1 vertex"])
     assert result.exit_code == 0
     assert result.output == "@\n"
 
 
-def test_app_with_count():
-    result = runner.invoke(app, ["search", "6 vertices, connected", "--count"])
+def test_app_count():
+    result = runner.invoke(app, ["count", "6 vertices, connected"])
     assert result.exit_code == 0
     assert result.stdout == "112\n"
 
 
-def test_app_with_sql():
+def test_app_sql():
     result = runner.invoke(app, ["to-sql", "5 vertices, planar"])
     assert result.exit_code == 0
     assert (
