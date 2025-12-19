@@ -34,16 +34,30 @@ def _print_parsing_error(query: str, e: ParsingError):
 
 
 @app.command()
-def search(query: str, count: bool = False):
+def search(query: str):
     """
     Get all graphs with given properties.
     """
     try:
         sql_query = translate(query)
-        if count:
-            print(len(get_ids(sql_query)))
-        else:
-            print("\n".join(get_ids(sql_query)))
+        print("\n".join(get_ids(sql_query)))
+    except ParsingError as e:
+        _print_parsing_error(query, e)
+    except OperationalError as e:
+        rich.print("[bold red]Error:", str(e) + ".")
+        rich.print(
+            "Try to create the database first. Run `[cyan]graphreveal create-database[/cyan]`."
+        )
+
+
+@app.command()
+def count(query: str):
+    """
+    Count all graphs with given properties.
+    """
+    try:
+        sql_query = translate(query)
+        print(len(get_ids(sql_query)))
     except ParsingError as e:
         _print_parsing_error(query, e)
     except OperationalError as e:

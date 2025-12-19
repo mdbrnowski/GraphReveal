@@ -33,10 +33,12 @@ graphreveal search "10 edges, bipartite, no isolated vertices, 2 components"
 ```
 
 ```shell
-graphreveal search --count "5..6 vertices, connected"
+graphreveal count "5..6 vertices, connected"
 ```
 
-Without `--count`, this command will print a list of graphs in [graph6](https://users.cecs.anu.edu.au/~bdm/data/formats.html) format. You can use [houseofgraphs.org](https://houseofgraphs.org/draw_graph) to visualize them.
+Command `search` will print a list of graphs in [graph6](https://users.cecs.anu.edu.au/~bdm/data/formats.html) format.
+You can use [houseofgraphs.org](https://houseofgraphs.org/draw_graph) to visualize them.
+Command `count` will simply output the number of specified graphs.
 
 ### List of available properties
 
