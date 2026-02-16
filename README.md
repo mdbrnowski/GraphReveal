@@ -60,3 +60,5 @@ Command `count` will simply output the number of specified graphs.
 
 As [N], you can use a simple number or range (e.g., `3-4`, `3..4`, `< 5`, `>= 2`).
 You can also negate any property using `!` or `not`.
+Use `|` for alternatives (disjunction) and parentheses `()` for grouping.
+Conjunction (`,` or `;`) binds tighter than `|`.

@@ -9,7 +9,12 @@ WHITESPACE: [ \t\r\n]+ -> skip;
 
 INTEGER: [0-9]+;
 
-SEPERATOR: ',' | ';';
+AND: ',' | ';';
+
+OR: '|';
+
+LPAREN : '(';
+RPAREN : ')';
 
 NOT: 'not' | '!';
 

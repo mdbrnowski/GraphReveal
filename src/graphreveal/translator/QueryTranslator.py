@@ -24,15 +24,24 @@ NUM_ENTITY_PROPERTY_MAP = {
 
 class QueryTranslator(QueryParserVisitor):
     def visitQuery(self, ctx: QueryParser.QueryContext) -> str:
-        return " AND ".join(
-            [self.visit(ctx.expr(i)) for i in range(ctx.getChildCount() // 2)]
-        )
+        return self.visit(ctx.orExpr())
+
+    def visitOrExpr(self, ctx: QueryParser.OrExprContext) -> str:
+        parts = [self.visit(ctx.andExpr(i)) for i in range(len(ctx.andExpr()))]
+        return " OR ".join(parts)
+
+    def visitAndExpr(self, ctx: QueryParser.AndExprContext) -> str:
+        parts = [self.visit(ctx.expr(i)) for i in range(len(ctx.expr()))]
+        return " AND ".join(parts)
 
     def visitSimpleExpr(self, ctx: QueryParser.SimpleExprContext):
         return self.visitChildren(ctx)
 
     def visitNotExpr(self, ctx: QueryParser.NotExprContext):
         return "NOT (" + self.visitChildren(ctx) + ")"
+
+    def visitParenExpr(self, ctx: QueryParser.ParenExprContext):
+        return "(" + self.visit(ctx.orExpr()) + ")"
 
     def visitNumEntityProperty(self, ctx: QueryParser.NumEntityPropertyContext):
         num = ctx.INTEGER().getText()

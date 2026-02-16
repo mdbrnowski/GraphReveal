@@ -9,14 +9,23 @@ options {
 }
 
 query
-    : expr (SEPERATOR expr)* EOF
+    : orExpr EOF
+    ;
+
+orExpr
+    : andExpr (OR andExpr)*
+    ;
+
+andExpr
+    : expr (AND expr)*
     ;
 
 expr
-    : entityProperty     # simpleExpr
-    | boolProperty       # simpleExpr
-    | NOT entityProperty # notExpr
-    | NOT boolProperty   # notExpr
+    : entityProperty       # simpleExpr
+    | boolProperty         # simpleExpr
+    | NOT entityProperty   # notExpr
+    | NOT boolProperty     # notExpr
+    | LPAREN orExpr RPAREN # parenExpr
     ;
 
 entityProperty

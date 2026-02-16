@@ -14,6 +14,16 @@ class QueryParserVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by QueryParser#orExpr.
+    def visitOrExpr(self, ctx:QueryParser.OrExprContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by QueryParser#andExpr.
+    def visitAndExpr(self, ctx:QueryParser.AndExprContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by QueryParser#simpleExpr.
     def visitSimpleExpr(self, ctx:QueryParser.SimpleExprContext):
         return self.visitChildren(ctx)
@@ -21,6 +31,11 @@ class QueryParserVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by QueryParser#notExpr.
     def visitNotExpr(self, ctx:QueryParser.NotExprContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by QueryParser#parenExpr.
+    def visitParenExpr(self, ctx:QueryParser.ParenExprContext):
         return self.visitChildren(ctx)
 
 
