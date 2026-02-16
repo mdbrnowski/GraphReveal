@@ -43,6 +43,9 @@ class QueryTranslator(QueryParserVisitor):
     def visitParenExpr(self, ctx: QueryParser.ParenExprContext):
         return "(" + self.visit(ctx.orExpr()) + ")"
 
+    def visitNotParenExpr(self, ctx: QueryParser.NotParenExprContext):
+        return "NOT (" + self.visit(ctx.orExpr()) + ")"
+
     def visitNumEntityProperty(self, ctx: QueryParser.NumEntityPropertyContext):
         num = ctx.INTEGER().getText()
         entity = self.visit(ctx.entity())

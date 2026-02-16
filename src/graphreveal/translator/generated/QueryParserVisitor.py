@@ -39,6 +39,11 @@ class QueryParserVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by QueryParser#notParenExpr.
+    def visitNotParenExpr(self, ctx:QueryParser.NotParenExprContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by QueryParser#numEntityProperty.
     def visitNumEntityProperty(self, ctx:QueryParser.NumEntityPropertyContext):
         return self.visitChildren(ctx)
