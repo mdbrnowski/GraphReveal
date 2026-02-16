@@ -41,6 +41,11 @@ from graphreveal.translator import translate
         ("4 vertices, >2 components", 2),
         ("3 vertices, >=2 components", 2),
         ("4 vertices, connected, <3 blocks, >1 block", 1),
+        ("5 vertices, tree | 5 vertices, complete", 3 + 1),
+        ("(hamiltonian | planar), 5 vertices, connected", 8 + 20 - 7),
+        ("(5 vertices | 6 vertices), connected", 21 + 112),
+        ("(3 vertices | 4 vertices | 5 vertices), connected", 2 + 6 + 21),
+        ("5 vertices, connected, not (eulerian | planar)", 0),
     ],
 )
 def test_query_results(query, expected_count):
