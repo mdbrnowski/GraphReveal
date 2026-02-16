@@ -24,6 +24,14 @@ from graphreveal.translator import QueryLexer, QueryParser
         "<6 vertices, 7-9 edges",
         "<=5 vertices, 7..9 edges",
         "<=2 vertices, >=11 edges",
+        "5 vertices, connected | 3 vertices, tree",
+        "(planar | acyclic), connected",
+        "(5 vertices | 6 vertices), connected",
+        "5 vertices, (bipartite | planar)",
+        "5 vertices, not (bipartite | planar)",
+        "bipartite | planar | 6 vertices",
+        "!(connected | tree)",
+        "not (connected | tree)",
     ],
 )
 def test_valid_query(valid_query):
@@ -53,6 +61,11 @@ def test_valid_query(valid_query):
         "5 vertices, 8 eulerian",
         "6 vertices, < edges",
         "5 vertices, .. edges,",
+        "|",
+        "()",
+        "(planar ())",
+        "(5 vertices",
+        "5 vertices)",
     ],
 )
 def test_invalid_query(invalid_query):

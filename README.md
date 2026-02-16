@@ -36,6 +36,10 @@ graphreveal search "10 edges, bipartite, no isolated vertices, 2 components"
 graphreveal count "5..6 vertices, connected"
 ```
 
+```shell
+graphreveal count "5 vertices, connected, not (eulerian | planar)"
+```
+
 Command `search` will print a list of graphs in [graph6](https://users.cecs.anu.edu.au/~bdm/data/formats.html) format.
 You can use [houseofgraphs.org](https://houseofgraphs.org/draw_graph) to visualize them.
 Command `count` will simply output the number of specified graphs.
@@ -60,3 +64,5 @@ Command `count` will simply output the number of specified graphs.
 
 As [N], you can use a simple number or range (e.g., `3-4`, `3..4`, `< 5`, `>= 2`).
 You can also negate any property using `!` or `not`.
+Use `|` for alternatives (disjunction) and parentheses `()` for grouping.
+Conjunction (`,` or `;`) binds tighter than `|`.
