@@ -21,12 +21,10 @@ andExpr
     ;
 
 expr
-    : entityProperty           # simpleExpr
-    | boolProperty             # simpleExpr
-    | NOT entityProperty       # notExpr
-    | NOT boolProperty         # notExpr
-    | LPAREN orExpr RPAREN     # parenExpr
-    | NOT LPAREN orExpr RPAREN # notParenExpr
+    : entityProperty       # simpleExpr
+    | boolProperty         # simpleExpr
+    | NOT expr             # notExpr
+    | LPAREN orExpr RPAREN # parenExpr
     ;
 
 entityProperty
