@@ -14,7 +14,7 @@ class QueryErrorListener(ErrorListener):
             length = offendingSymbol.stop - offendingSymbol.start + 1
         elif isinstance(recognizer, QueryLexer):
             length = len(msg.split("recognition error at: ")[1]) - 2
-        else:  # this should not happen
+        else:  # pragma: no cover (this should not happen)
             raise AssertionError("length of this error cannot be determined")
         length = max(1, length)
         self.errors.append((line, column, length))

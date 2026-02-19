@@ -55,3 +55,9 @@ exclude = ["generated"]
 
 [tool.hatch.version]
 path = "src/graphreveal/__init__.py"
+
+[tool.coverage.run]
+branch = true
+omit = [
+    "src/graphreveal/translator/generated/*",
+]
