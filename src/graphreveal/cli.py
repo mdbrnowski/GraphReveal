@@ -43,11 +43,13 @@ def search(query: str):
         print("\n".join(get_ids(sql_query)))
     except ParsingError as e:
         _print_parsing_error(query, e)
+        raise typer.Exit(code=2)
     except OperationalError as e:
         rich.print("[bold red]Error:", str(e) + ".")
         rich.print(
             "Try to create the database first. Run `[cyan]graphreveal create-database[/cyan]`."
         )
+        raise typer.Exit(code=1)
 
 
 @app.command()
@@ -60,11 +62,13 @@ def count(query: str):
         print(len(get_ids(sql_query)))
     except ParsingError as e:
         _print_parsing_error(query, e)
+        raise typer.Exit(code=2)
     except OperationalError as e:
         rich.print("[bold red]Error:", str(e) + ".")
         rich.print(
             "Try to create the database first. Run `[cyan]graphreveal create-database[/cyan]`."
         )
+        raise typer.Exit(code=1)
 
 
 @app.command()
@@ -74,8 +78,7 @@ def create_database(n: int = 7):
     """
     if n > 9 or n < 1:
         rich.print("[bold red]Error: Choose n between 1 and 9.")
-        return
-
+        raise typer.Exit(code=1)
     try:
         if not os.path.exists(DATABASE_PATH) or Confirm.ask(
             "Are you sure you want to overwrite the database?"
@@ -83,6 +86,7 @@ def create_database(n: int = 7):
             create_db(n)
     except OperationalError as e:
         rich.print("[bold red]Error:", str(e) + ".")
+        raise typer.Exit(code=1)
 
 
 @app.command()
@@ -95,6 +99,7 @@ def to_sql(query: str):
         print(sql_query)
     except ParsingError as e:
         _print_parsing_error(query, e)
+        raise typer.Exit(code=2)
 
 
 if __name__ == "__main__":
