@@ -40,9 +40,11 @@ def test_app_parser_error(command):
     result = runner.invoke(app, [command, "vertices"])
     assert result.exit_code == 2
 
+
 def test_create_database_error_too_small():
     result = runner.invoke(app, ["create-database", "--n", "0"])
     assert result.exit_code == 1
+
 
 def test_create_database_error_too_large():
     result = runner.invoke(app, ["create-database", "--n", "10"])
