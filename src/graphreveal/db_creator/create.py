@@ -2,11 +2,21 @@ import importlib.resources
 import os
 import sqlite3
 
+import igraph as ig
 import networkx as nx
 from rich.progress import track
 
 from graphreveal import DATABASE_PATH
 from . import util
+
+
+def _nx_to_ig(G_nx: nx.Graph) -> ig.Graph:
+    """Convert a networkx graph to an igraph graph."""
+    G_ig = ig.Graph(len(G_nx), directed=G_nx.is_directed())
+    edges = list(G_nx.edges())
+    if edges:
+        G_ig.add_edges(edges)
+    return G_ig
 
 
 def create_db(max_n):
@@ -45,22 +55,23 @@ def create_db(max_n):
             all_graphs += f.read().strip().split("\n")
 
     for graph_g6 in track(all_graphs, description="Creating the database"):
-        graph = nx.from_graph6_bytes(str.encode(graph_g6))
+        graph_nx = nx.from_graph6_bytes(str.encode(graph_g6))
+        graph_ig = _nx_to_ig(graph_nx)
         cur.execute(
             "INSERT INTO graphs VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
             [
                 graph_g6,
-                graph.number_of_nodes(),
-                graph.number_of_edges(),
-                nx.is_forest(graph),
-                nx.is_bipartite(graph),
-                nx.is_eulerian(graph),
-                util.is_hamiltonian(graph),
-                nx.is_planar(graph),
-                len(list(nx.biconnected_components(graph))),
-                nx.number_connected_components(graph),
-                util.max_degree(graph),
-                util.min_degree(graph),
+                graph_nx.number_of_nodes(),
+                graph_nx.number_of_edges(),
+                nx.is_forest(graph_nx),
+                nx.is_bipartite(graph_nx),
+                nx.is_eulerian(graph_nx),
+                util.is_hamiltonian(graph_ig),
+                nx.is_planar(graph_nx),
+                len(list(nx.biconnected_components(graph_nx))),
+                nx.number_connected_components(graph_nx),
+                util.max_degree(graph_ig),
+                util.min_degree(graph_ig),
             ],
         )
 
