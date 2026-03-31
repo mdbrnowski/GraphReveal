@@ -50,6 +50,13 @@ def is_hamiltonian(G: ig.Graph) -> bool:
     return G.subisomorphic_vf2(cycle)
 
 
+def is_eulerian(graph: ig.Graph) -> bool:
+    """Checks whether a graph has an Eulerian circuit."""
+    if not graph.is_connected():
+        return False
+    return all(degree % 2 == 0 for degree in graph.degree())
+
+
 def max_degree(graph: ig.Graph) -> int:
     return max(graph.degree())
 
