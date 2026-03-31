@@ -7,8 +7,8 @@ def _find_closure(G: ig.Graph) -> ig.Graph:
     n = G.vcount()
     edges_to_add = []
     for v in range(n):
-        for u in range(n):
-            if u != v and not G.are_adjacent(u, v):
+        for u in range(v + 1, n):
+            if not G.are_adjacent(u, v):
                 if G.degree(v) + G.degree(u) >= n:
                     edges_to_add.append((v, u))
 
