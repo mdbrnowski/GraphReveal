@@ -24,7 +24,7 @@ Firstly, you should create the database:
 graphreveal create-database
 ```
 
-This process should take less than two seconds and will create a database of graphs with an order no greater than 7. To use a larger database, add the `--n 8` or `--n 9` flag to this command (it should take no more than half an hour).
+This process should take less than a second and will create a database of graphs with order no greater than 7. To use a larger database, add the `--n 8` or `--n 9` flag to this command (it should take no more than a couple of minutes).
 
 ### Some examples
 

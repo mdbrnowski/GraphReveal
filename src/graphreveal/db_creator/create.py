@@ -2,6 +2,7 @@ import importlib.resources
 import os
 import sqlite3
 
+import igraph as ig
 import networkx as nx
 from rich.progress import track
 
@@ -45,20 +46,21 @@ def create_db(max_n):
             all_graphs += f.read().strip().split("\n")
 
     for graph_g6 in track(all_graphs, description="Creating the database"):
-        graph = nx.from_graph6_bytes(str.encode(graph_g6))
+        graph_nx = nx.from_graph6_bytes(str.encode(graph_g6))
+        graph = ig.Graph.from_networkx(graph_nx)
         cur.execute(
             "INSERT INTO graphs VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
             [
                 graph_g6,
-                graph.number_of_nodes(),
-                graph.number_of_edges(),
-                nx.is_forest(graph),
-                nx.is_bipartite(graph),
-                nx.is_eulerian(graph),
+                graph.vcount(),
+                graph.ecount(),
+                graph.is_acyclic(),
+                graph.is_bipartite(),
+                util.is_eulerian(graph),
                 util.is_hamiltonian(graph),
-                nx.is_planar(graph),
-                len(list(nx.biconnected_components(graph))),
-                nx.number_connected_components(graph),
+                nx.is_planar(graph_nx),
+                len(graph.biconnected_components()),
+                len(graph.connected_components()),
                 util.max_degree(graph),
                 util.min_degree(graph),
             ],
